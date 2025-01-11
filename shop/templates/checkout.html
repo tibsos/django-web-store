@@ -1,0 +1,88 @@
+<!-- shop/templates/checkout.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .checkout-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .checkout-container h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .checkout-container .cart-items {
+        margin-bottom: 20px;
+    }
+
+    .checkout-container .cart-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .checkout-container .cart-item p {
+        margin: 0;
+    }
+
+    .checkout-container .total-price {
+        font-size: 1.5em;
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .checkout-container form {
+        margin-top: 30px;
+    }
+
+    .checkout-container form input, .checkout-container form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .checkout-container form button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .checkout-container form button:hover {
+        background-color: #218838;
+    }
+</style>
+
+<div class="checkout-container">
+    <h1>Оформление заказа</h1>
+
+    <div class="cart-items">
+        {% for item in cart_items %}
+            <div class="cart-item">
+                <p>{{ item.product.name }} x {{ item.quantity }}</p>
+                <p>{{ item.product.price }} руб.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="total-price">
+        <p>Итого: {{ total_price }} руб.</p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Оформить заказ</button>
+    </form>
+</div>
+
+{% endblock %}

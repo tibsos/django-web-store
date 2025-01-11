@@ -1,10 +1,12 @@
 # shop/views.py
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
 from .models import Category, Product, Cart, Favorite, CartItem
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
+from django.contrib import messages
+from .forms import CheckoutForm
 
 # Получаем категории для отображения в боковой панели
 def get_categories():
@@ -55,7 +57,6 @@ def product_detail(request, slug):
         'categories': categories
     })
 
-# Страница корзины
 @login_required
 def cart(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
@@ -64,13 +65,13 @@ def cart(request):
     # Вычисляем общую цену корзины и итоговую цену каждого товара
     total_price = 0
     for item in cart_items:
-        item.total_price = item.product.price * item.quantity  # Итоговая цена для каждого товара
-        total_price += item.total_price  # Общая сумма корзины
-    
+        total_price += item.total_price  # Используем геттер для total_price
+
     return render(request, 'cart.html', {
         'cart_items': cart_items,
         'total_price': total_price
     })
+
 
 # Обновление количества товара в корзине
 @login_required
@@ -123,16 +124,50 @@ def edit_profile(request):
     
     return render(request, 'edit_profile.html', {'form': form})
 
-# Добавить товар в корзину
 @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user)
-    
+
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
     if not item_created:
         cart_item.quantity += 1
         cart_item.save()
     
-    messages.success(request, f"Товар '{product.name}' добавлен в корзину!")
-    return redirect('cart')
+    # Возвращаем JSON-ответ
+    return HttpResponse("K")
+
+@login_required
+def checkout(request):
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = cart.cartitem_set.all()
+    
+    # Вычисляем общую сумму корзины
+    total_price = sum([item.product.price * item.quantity for item in cart_items])
+    
+    # Если корзина пуста, перенаправляем на страницу товаров
+    if not cart_items:
+        messages.error(request, "Ваша корзина пуста.")
+        return redirect('product_list')
+
+    # Обрабатываем форму оформления заказа
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            # Здесь логика для создания заказа, сохранения данных и т.д.
+            # Например, создаем объект Order и сохраняем информацию
+            # Очищаем корзину после оформления
+            cart.cartitem_set.all().delete()
+            messages.success(request, "Ваш заказ успешно оформлен!")
+            return redirect('order_complete')  # Можно перенаправить на страницу подтверждения
+    else:
+        form = CheckoutForm()
+
+    return render(request, 'checkout.html', {
+        'cart_items': cart_items,
+        'total_price': total_price,
+        'form': form
+    })
+
+def order_complete(request):
+    return render(request, 'order_complete.html')

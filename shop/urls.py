@@ -32,4 +32,9 @@ urlpatterns = [
 
     # URL для добавления товара в корзину, используя UUID
     path('cart/add/<uuid:product_id>/', views.add_to_cart, name='add_to_cart'),  # добавление UUID
+
+    # ... другие пути
+    path('checkout/', views.checkout, name='checkout'),
+    # Страница подтверждения заказа (если нужно)
+    path('order/complete/', views.order_complete, name='order_complete'),
 ]
