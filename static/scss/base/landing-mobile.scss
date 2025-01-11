@@ -1,0 +1,861 @@
+$text-color: #1E2330;
+
+body, html {
+
+    margin: 0;
+    color: $text-color;
+
+    width: 100%;
+    
+}
+
+button {
+
+    outline: none;
+
+}
+
+::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+
+    background: $text-color;
+    border-radius: 50px;
+
+}
+
+
+#homeBtn {width: 100px}
+#logoutBtn {width: 120px}
+#loginBtn {width: 120px}
+
+.top-nav {
+
+    position: relative;
+    top: 20px;
+    
+    width: 100%;
+    height: 50px;
+
+    z-index: 10;
+
+    .brand {
+
+        position: relative;
+        left: 30px;
+
+        width: 300px;
+
+        cursor: pointer;
+
+        a {
+
+            text-decoration: none;
+            color: $text-color;
+
+            width: 300px;
+            
+        }
+
+       
+        svg {
+
+            position: relative;
+            left: 15px;
+
+            transform: scale(1.8);
+            fill: $text-color;
+
+            float: left;
+
+        }
+
+        h1 {
+
+            position: relative;
+            left: 40px;
+
+            width: 300px;
+
+            font-size: 40px;
+
+        }
+
+
+    }
+
+    .btns {
+
+        position: absolute;
+        bottom: -3px;
+        right: 50px;
+
+        height: 60px;
+
+        display: inline-block;
+
+        .auth-btn.in {
+
+            box-shadow: inset 1px 1px 4px #b9b9b7,
+                inset -1px -1px 4px #ffffff;
+
+        }
+
+        div {
+
+            position: relative;
+
+            height: 20px;
+
+            padding: 20px;
+
+            margin-left: 40px;
+
+            border-radius: 50px;
+
+            display: flex;
+            align-items: center;
+
+            cursor: pointer;
+
+            box-shadow:  1px 1px 4px #b9b9b7,
+                    -1px -1px 4px #ffffff;
+
+            float: left;
+            
+            svg {
+
+                position: absolute;
+                left: 20px;
+
+                fill: $text-color;
+    
+            }
+    
+            .home {
+    
+                transform: scale(1.3);
+    
+            }
+    
+            .logout {
+    
+                margin-top: 3px;
+    
+                transform: scale(1.2);
+    
+            }
+    
+            .login {
+    
+                transform: scale(1.3);
+    
+            }
+            
+    
+            span {
+    
+                position: relative;
+                left: 45px;
+                top: 3px;
+    
+                font-size: 20px;
+    
+            }
+
+        }
+
+        a {
+
+            text-decoration: none;
+            color: $text-color;
+            cursor: pointer;
+
+        }
+
+    }
+
+}
+
+.main {
+
+    position: relative;
+    width: 100%;
+
+    .circles {
+
+        position: absolute;
+        left: -20px;
+        top: 100px;
+
+        width: 100%;
+        height: 1000px;
+
+        overflow: hidden;
+
+        div {
+
+            position: absolute;
+
+            transform: scale(1);
+
+            border-radius: 1000px;
+
+        }
+
+        .big {
+
+            top: 20px;
+
+            width: 1000px;
+            height: 1000px;
+            
+            background-color: #e9812d;
+
+            transition: all 3s ease-in-out;
+
+        }
+
+        .medium {
+
+            top: 350px;
+            left: 100px;
+
+            width: 550px;
+            height: 550px;
+
+            background-color: #efca59;
+
+            transition: all 1.5s ease-in-out;
+
+        }
+
+        .small {
+
+            top: 50px;
+            left: 500px;
+
+            width: 400px;
+            height: 400px;
+
+            background-color: #efa4c1;
+
+            transition: all 1s ease-in-out;
+
+        }
+
+    }
+
+    .content {
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 1122px;
+
+        overflow: hidden;
+
+        background: rgba(255, 255, 255, 0.25);
+
+        backdrop-filter: blur( 190px );
+        -webkit-backdrop-filter: blur( 180px );
+
+        .info {
+
+            position: relative;
+
+            width: 100%;
+            height: 1000px;
+
+            overflow: hidden;
+
+            .text {
+
+                position: relative;
+                top: 220px;
+                left: 125px;
+
+                width: calc(50% - 500px);
+
+                float: left;
+
+                span {
+
+                    font-size: 100px;
+                    font-weight: bold;
+
+    
+                }
+
+                h2 {
+
+                    font-weight: normal;
+                    font-size: 30px;
+
+                }
+
+                button {
+
+                    position: relative;
+                    top: 30px;
+
+                    height: 70px;
+                    width: 450px;
+
+                    padding: 10px;
+
+                    background: rgba(255, 255, 255, 0.2);
+
+                    box-shadow: 1px 1px 4px #b9b9b7,
+                        -1px -1px 4px #ffffff;
+
+                    border: none;
+                    border-radius: 100px;
+
+                    font-family: Comfortaa;
+
+                    cursor: pointer;
+
+                    color: $text-color;
+
+                    h1 {
+
+                        margin: 0;
+
+                        font-weight: normal;
+                        font-size: 30px;
+
+                    }
+
+                }
+
+                button.in {
+
+                    box-shadow: inset 1px 1px 4px #b9b9b7,
+                        inset -1px -1px 4px #ffffff;
+
+                }
+
+            }
+
+        }
+
+        .img {
+
+            position: relative;
+            top: 30px;
+
+            width: 50%;
+
+            float: right;
+            
+            overflow: hidden;
+
+            img {
+
+                position: relative;
+                
+
+            }
+
+        }
+
+    }
+
+}
+
+.bottom-nav {
+
+    position: relative;
+    top: -70px;
+    left: -15px;
+
+    width: 100%;
+
+    .links {
+
+        position: relative;
+        left: 5px;
+        bottom: 9px;
+
+        float: left;
+
+        ul {
+
+            list-style-type: none;
+
+            li {
+
+                display: inline-block;
+
+                margin-right: 30px;
+
+                a {
+
+                    text-decoration: none;
+                    color: $text-color;
+
+                    font-size: 23px;
+
+                    .copyright {
+
+                        width: 275px;
+
+                        font-weight: normal;
+                        font-size: 27px;
+
+                    }
+
+                }
+
+                /* Link hover effect */
+
+                .link:before, .link:after, .link > span:before, .link > span:after {
+
+                    content: '';
+                    position: absolute;
+                    transition: transform .5s ease;
+
+                }
+
+                .link, .link > span {
+
+                    position: relative;
+                    color: $text-color;
+                    text-decoration: none;
+                    line-height: 24px;
+                
+                }
+                  
+                .link {
+
+                    display: inline-flex;
+                    padding-top: 10px;
+                    padding-bottom: 5px;
+                    overflow: hidden;
+
+                }
+                  
+                .link:before {
+
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: #492059;
+                    transform: translateX(-100%);
+
+                }
+                  
+                .link:hover:before {
+
+                    transform: translateX(0);
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .social-media {
+
+        position: absolute;
+        top: 34px;
+        right: 32px;
+
+        div {
+
+            cursor: pointer;
+
+            transform: scale(1);
+
+            transition: all 0.5s ease-in-out;
+
+        }
+
+        div:hover {
+
+            transform: scale(1.2);
+
+        }
+
+    }
+
+}
+
+@media screen and (max-width: 1330px) {
+    
+    .main {
+
+        .circles {
+
+            height: 900px;
+
+            .big {
+
+                width: 850px;
+                height: 850px;
+
+            }
+
+            .medium {
+
+                width: 550px;
+                height: 550px;
+
+            }
+
+            .small {
+
+                width: 350px;
+                height: 350px;
+
+            }
+
+        }
+
+        .content {
+
+            height: 1050px;
+
+            .info {
+    
+                .text {
+    
+                    top: 170px;
+                    left: 100px;
+
+                    span {
+
+                        font-size: 85px;
+
+                    }
+
+                    h2 {
+
+                        font-size: 50px;
+
+                    }
+
+                    button {
+
+                        height: 55px;
+                        width: 320px;
+
+                        font-size: 23px;
+
+                        h1 {
+
+                            font-size: 23px;
+    
+                        }
+
+                    }
+    
+                }
+    
+            }
+    
+        }
+
+        .img {
+
+            img {
+
+                bottom: 40px;
+                right: 160px;
+
+                transform: scale(0.8);
+
+            }
+
+        }
+
+    }
+
+    .bottom-nav {
+
+        top: -120px;
+
+    }
+
+}
+
+
+
+@media screen and (max-width: 850px) {
+
+    .main {
+
+        .top-nav {
+    
+            .brand {
+                
+                top: 20px;
+                left: 20px;
+        
+            }
+        
+            .btns {
+        
+                position: absolute;
+                bottom: -10px;
+                right: 10px;
+
+                #homeBtn, #logoutBtn, #loginBtn {width: 30px}
+
+                .auth-btn {
+        
+                    position: relative;
+                    right: 15px;
+        
+                    height: 30px;
+
+                    justify-content: center;
+                    
+                    margin-left: 30px;
+                    
+                    svg {
+        
+                        position: absolute;
+            
+                    }
+            
+                    .home {
+            
+                        transform: scale(1.3);
+            
+                    }
+            
+                    .logout {
+            
+                        margin-top: 3px;
+                        
+                        transform: scale(1.2);
+            
+                    }
+            
+                    .login {
+            
+                        transform: scale(1.3);
+            
+                    }
+                    
+            
+                    span {
+            
+                        display: none;
+            
+                    }
+        
+                }
+        
+            }
+        
+        }
+
+        .circles {
+
+            height: 850px;
+
+        }
+
+        .content {
+
+            height: 1000px;
+
+            .info {
+
+                height: 800px;
+    
+                .text {
+    
+                    top: 200px;
+                    left: 40px;
+
+                    width: 100%;
+
+                    span {
+
+                        font-size: 55px;
+
+                    }
+
+                    h2 {
+
+                        font-size: 30px;
+
+                    }
+
+                    button {
+
+                        height: 55px;
+                        width: 270px;
+
+                        font-size: 20px;
+
+                    }
+    
+                }
+
+                .img {
+
+                    width: 100%;
+
+                    display: none;
+
+                }
+    
+            }
+    
+        }
+
+        .img {
+
+            img {
+
+                bottom: 40px;
+                right: 160px;
+
+                transform: scale(0.8);
+
+            }
+
+        }
+
+    }
+
+    .bottom-nav {
+
+        left: -30px;
+        top: 40px;
+
+        .links {
+
+            ul {
+
+                li {
+
+                    a {
+
+                        font-size: 16px;
+
+                        .copyright {
+
+                            width: 190px;
+
+                            margin: 0;
+
+                            font-size: 19px;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+@media screen and (max-width: 850px) {
+
+    .main {
+
+        .top-nav {
+    
+            .brand {
+                
+                top: 20px;
+                left: 20px;
+            
+                h1 {
+    
+                    display: none;
+            
+                }
+        
+            }
+
+        }
+
+        .content {
+
+            .info {
+
+                .text {
+
+                    width: calc(100% - 80px);
+
+                }
+
+            }
+
+        }
+
+        .circles {
+
+            height: 800px;
+
+        }
+
+        .content {
+
+            height: 950px;
+
+        }
+
+    }
+
+}
+
+@media screen and (max-width: 589px) {
+
+    .main {
+
+        .circles {
+
+
+            height: 850px;
+
+        }
+
+        .content {
+
+            height: 1000px;
+
+        }
+
+    }
+
+}
+
+@media screen and (min-width: 850px) and (max-width: 915px) {
+
+    .bottom-nav {
+
+        top: -140px;
+
+    }
+
+}

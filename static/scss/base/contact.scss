@@ -1,0 +1,711 @@
+$text-color: #1E2330;
+$theme-color: #FAE3CE;
+
+body, html {
+
+    margin: 0;
+    color: $text-color;
+
+    background: #fff;
+
+    width: 100%;
+    overflow: hidden;
+    overflow-y: visible;
+    
+}
+
+button {
+
+    outline: none;
+
+}
+
+::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+
+    background: $text-color;
+    border-radius: 50px;
+
+}
+
+#Icon_feather-mail {
+
+    path {
+
+        stroke: $text-color;
+
+    }
+
+}
+
+#questionTheme {
+
+    background: #fff;
+
+    option {
+
+        padding-left: 0;
+
+    }
+
+}
+
+#homeBtn {width: 100px}
+#logoutBtn {width: 120px}
+#loginBtn {width: 120px}
+
+.top-nav {
+
+    position: relative;
+    top: 20px;
+    
+    width: 100%;
+    height: 50px;
+
+    z-index: 10;
+
+    .brand {
+
+        position: relative;
+        left: 30px;
+
+        cursor: pointer;
+
+        a {
+
+            text-decoration: none;
+            color: $text-color;
+
+        }
+
+       
+        svg {
+
+            position: relative;
+            left: 15px;
+
+            transform: scale(1.8);
+            fill: $text-color;
+
+            float: left;
+
+        }
+
+        h1 {
+
+            position: relative;
+            left: 40px;
+
+            font-size: 40px;
+
+            
+        }
+
+
+    }
+
+    .btns {
+
+        position: absolute;
+        bottom: -3px;
+        right: 50px;
+
+        height: 60px;
+
+        display: inline-block;
+
+        .auth-btn {
+
+            position: relative;
+
+            height: 20px;
+
+            padding: 20px;
+
+            margin-left: 40px;
+
+            border-radius: 50px;
+
+            display: flex;
+            align-items: center;
+
+            cursor: pointer;
+
+            box-shadow:  1px 1px 4px #b9b9b7,
+                -1px -1px 4px #ffffff;
+
+            float: left;
+            
+            svg {
+
+                position: absolute;
+                left: 20px;
+
+                fill: $text-color;
+    
+            }
+    
+            .home {
+    
+                transform: scale(1.3);
+    
+            }
+    
+            .logout {
+    
+                margin-top: 3px;
+    
+                transform: scale(1.2);
+    
+            }
+    
+            .login {
+    
+                transform: scale(1.3);
+    
+            }
+            
+    
+            span {
+    
+                position: relative;
+                left: 45px;
+                top: 3px;
+    
+                font-size: 20px;
+    
+            }
+
+        }
+
+        .auth-btn.in {
+
+            box-shadow: inset 1px 1px 4px #b9b9b7,
+                inset -1px -1px 4px #ffffff;
+
+        }
+
+        a {
+
+            text-decoration: none;
+            color: $text-color;
+            cursor: pointer;
+
+        }
+
+    }
+
+}
+
+textarea {
+
+    font-family: Comfortaa;
+
+}
+
+textarea:focus, input:focus, select:focus {
+
+    outline: none;
+
+}
+
+textarea:hover {
+
+    border: none;
+
+}
+
+.main {
+
+    position: relative;
+    top: -20px;
+    left: 0;
+
+    .image {
+
+        display: flex;
+        justify-content: center;
+
+        .contact-pic {
+
+            transform: scale(0.7);
+
+            box-shadow:  1px 1px 4px #b9b9b7,
+                    -1px -1px 4px #ffffff;
+            border-radius: 2000px;
+    
+        }
+
+    }
+
+    .text {
+
+        position: relative;
+        bottom: 60px;
+
+        text-align: center;
+
+        .t1 {
+
+            font-size: 50px;
+
+            margin-bottom: 10px;
+
+        }
+        
+        .t2 {
+
+            font-size: 33px;
+            font-weight: normal;
+
+        }
+        
+    }
+
+    .form {
+
+        position: relative;
+        bottom: 40px;
+
+        display: flex;
+        justify-content: center;
+
+        .fields {
+
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            input {
+
+                display: block;
+
+                height: 47px;
+                width: 300px;
+
+                padding: 3px 20px 0 20px;
+                margin: 0 0 20px 150px;
+
+                background: #F6F7F5;
+
+                border: none;
+                border-radius: 100px;
+
+                box-shadow: inset 1px 1px 4px #b9b9b7,
+                    inset -1px -1px 4px #ffffff;
+
+                font-family: Comfortaa;
+                font-size: 18px;
+
+            }            
+
+            #questionTheme {
+
+                display: block;
+
+                height: 47px;
+                width: 340px;
+
+                padding-left: 16px;
+                margin: 0 0 20px 150px;
+
+                border: none;
+                border-radius: 100px;
+
+                font-family: Comfortaa;
+                font-size: 18px;
+
+                background: #F6F7F5;
+
+                box-shadow: 1px 1px 4px #b9b9b7,
+                    -1px -1px 4px #ffffff;
+
+                font-family: Comfortaa;
+
+            }
+
+            #message {
+
+                resize: vertical;
+
+                height: 300px;
+                width: 600px;
+
+                padding: 20px 20px 0 20px;
+                margin-bottom: 20px;
+
+                border: none;
+                border-radius: 30px;
+
+                background: #F6F7F5;
+                box-shadow: inset 1px 1px 4px #b9b9b7,
+                    inset -1px -1px 4px #ffffff;
+
+                font-family: Comfortaa;
+                font-size: 16px;
+
+            }
+
+            #submitForm {
+                
+                width: 340px;
+                height: 50px;
+
+                display: block;
+
+                margin-left: 150px;
+
+                color: $text-color;
+
+                border: none;
+                border-radius: 100px;
+
+                box-shadow: 1px 1px 4px #b9b9b7,
+                    -1px -1px 4px #ffffff;
+
+                cursor: pointer;
+    
+                font-family: Comfortaa;
+                font-size: 20px;
+
+            }
+
+            #submitForm:disabled {
+
+                opacity: 0.7;
+
+                cursor: not-allowed;
+
+            }
+
+            #submitForm:focus {
+
+                outline: none;
+
+            }
+
+            #submitForm.in {
+
+                box-shadow: inset 1px 1px 4px #b9b9b7,
+                    inset -1px -1px 4px #ffffff;
+
+            }
+
+        }
+
+    }
+
+    .message-submitted {
+
+        position: relative;
+        bottom: 30px;
+
+        display: none;
+        opacity: 0;
+
+        text-align: center;
+
+    }
+
+}
+
+.bottom-nav {
+
+    position: relative;
+    top: 30px;
+    left: -15px;
+
+    width: 100%;
+
+    .links {
+
+        position: relative;
+        left: 5px;
+        bottom: 9px;
+
+        ul {
+
+            list-style-type: none;
+
+            li {
+
+                display: inline-block;
+
+                margin-right: 30px;
+
+                a {
+
+                    text-decoration: none;
+                    color: $text-color;
+
+                    font-size: 23px;
+
+                    .copyright {
+
+                        width: 275px;
+
+                        font-weight: normal;
+                        font-size: 27px;
+
+                    }
+
+                }
+
+                /* Link hover effect */
+
+                .link:before, .link:after, .link > span:before, .link > span:after {
+
+                    content: '';
+                    position: absolute;
+                    transition: transform .5s ease;
+
+                }
+
+                .link, .link > span {
+
+                    position: relative;
+                    color: $text-color;
+                    text-decoration: none;
+                    line-height: 24px;
+                
+                }
+                  
+                .link {
+
+                    display: inline-flex;
+                    padding-top: 10px;
+                    padding-bottom: 5px;
+                    overflow: hidden;
+
+                }
+                  
+                .link:before {
+
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: #492059;
+                    transform: translateX(-100%);
+
+                }
+                  
+                .link:hover:before {
+
+                    transform: translateX(0);
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+/* Nav style */
+
+@media screen and (max-width: 850px) {
+
+    .main {
+
+        overflow-y: hidden;
+
+    }
+
+    .top-nav {
+
+        .brand {
+            
+            top: 20px;
+            left: 20px;
+    
+        }
+    
+        .btns {
+    
+            position: absolute;
+            bottom: -10px;
+            right: 10px;
+
+            #homeBtn, #logoutBtn, #loginBtn {width: 30px}
+
+            .auth-btn {
+    
+                position: relative;
+                right: 15px;
+    
+                height: 30px;
+
+                justify-content: center;
+                
+                margin-left: 30px;
+                
+                svg {
+    
+                    position: absolute;
+        
+                }
+        
+                .home {
+        
+                    transform: scale(1.3);
+        
+                }
+        
+                .logout {
+        
+                    margin-top: 3px;
+                    
+                    transform: scale(1.2);
+        
+                }
+        
+                .login {
+        
+                    transform: scale(1.3);
+        
+                }
+                
+        
+                span {
+        
+                    display: none;
+        
+                }
+    
+            }
+    
+        }
+    
+    }
+
+    .bottom-nav {
+
+        left: -30px;
+        top: 40px;
+
+        height: 110px;
+
+        .links {
+
+            ul {
+
+                li {
+
+                    a {
+
+                        font-size: 16px;
+
+                        .copyright {
+
+                            width: 190px;
+
+                            margin: 0;
+
+                            font-size: 19px;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+@media screen and (max-width: 850px) {
+
+
+    .top-nav {
+
+        .brand {
+            
+            top: 20px;
+            left: 20px;
+        
+            h1 {
+
+                display: none;
+        
+            }
+
+        }
+
+    }
+
+
+}
+
+@media screen and (max-width: 690px) {
+
+    .main {
+
+        .image {
+
+            .contact-pic {
+
+                transform: scale(0.5);
+
+            }
+
+        }
+
+        .text {
+
+            .t1 {
+
+                font-size: 32px;
+
+            }
+
+            .t2 {
+
+                font-size: 20px;
+
+            }
+
+        }
+
+        .form {
+
+            .fields {
+
+                position: relative;
+                right: 75px;
+
+                #message {
+
+                    position: relative;
+                    left: 150px;
+
+                    width: 300px;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

@@ -1,0 +1,3432 @@
+$light-theme: #f6eadf;
+$light-text: #1E2330;
+$light-placeholder: #6e7267;
+
+$dark-theme: #151718;
+$dark-text: #a3a7ab;
+$dark-placeholder: #6e7072;
+
+$topnav-height: 70px;
+
+a {
+
+    text-decoration: none;
+    color: inherit;
+
+}
+
+body {
+
+    width: 100%;
+    height: 100%;
+
+    background: $light-theme;
+    color: $light-text;
+
+    font-family: Comfortaa;
+
+    overflow: hidden;
+    overflow-y: auto;
+
+    transition: background 1s ease-in-out;
+
+}
+
+button {
+
+    outline: none;
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    
+    width: 10px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: $light-text;
+    border-radius: 50px;
+
+}
+
+/* Defaults */
+
+input {
+
+    font-size: 19px;
+    font-family: Comfortaa;
+
+    border: 1px solid $light-text;
+    border-radius: 100px;
+
+    color: $light-text;
+    background: $light-theme;
+
+    transition: all 0.75s ease-in-out;
+
+}
+
+input::placeholder {
+
+    color: $light-placeholder;
+
+ }
+
+input:focus {
+
+    outline: none;
+
+}
+
+button {
+    
+    border: none;
+    border-radius: 100px;
+
+    background: $light-theme;
+
+    color: $light-text;
+    font-family: Comfortaa;
+
+    box-shadow:  3px 3px 8px #d8cec4,
+            -3px -3px 8px #fffffa;
+
+    cursor: pointer;
+
+    transition: background 1s ease-in-out;
+    transition: box-shadow 1s ease-in-out;
+
+}
+
+button:focus {outline: none;}
+
+button:disabled {
+    
+    opacity: 0.55;
+    
+    cursor: not-allowed;
+
+}
+
+svg {
+
+    fill: $light-text;
+
+    transition: fill 1s ease-in-out;
+
+}
+
+[contenteditable]:focus {
+
+    outline: none;
+
+}
+
+[contenteditable]:empty:before {
+
+    content: attr(placeholder);
+    color: $light-placeholder;
+
+}
+
+.wrapper {
+
+    background: $light-theme;
+
+    transition: all 1s ease-in-out;
+
+}
+
+/* Add note btn */
+
+.add-note-btn {
+
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $light-theme;
+
+    border-radius: 50px;
+
+    box-shadow:  3px 3px 8px #d8cec4,
+        -3px -3px 8px #fffffa;
+    
+    font-size: 35px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 9;
+
+}
+
+.add-note-btn.in {
+
+    box-shadow: inset 3px 3px 8px #d8cec4,
+        inset -3px -3px 8px #fffffa;
+
+}
+
+#newNoteNotAllowed {
+
+    display: none;
+
+}
+
+/* Profile */
+
+.profile-dropdown {
+
+    position: fixed;
+    right: 20px;
+    top: 150px;
+
+    height: 170px;
+    width: 200px;
+
+    display: none;
+
+    opacity: 0;
+
+    border-radius: 30px;
+    background: $light-theme;
+
+    box-shadow:  3px 3px 8px #d8cec4,
+        -3px -3px 8px #fffffa;
+
+    z-index: 8;
+
+    transition: all 1s ease-in-out;
+
+    .buttons {
+
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        padding: 10px;
+
+        a {
+
+            text-decoration: none;
+            color: inherit;
+
+            .btn {
+
+                width: 160px;
+                height: 40px;
+    
+                display: flex;
+                align-items: center;
+    
+                padding: 10px;
+                margin-bottom: 20px;
+    
+                border-radius: 50px;
+    
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+    
+                cursor: pointer;
+                
+                transition: all 1s ease-in-out;
+
+                svg {
+    
+                    padding-left: 5px;
+    
+                    float: left;
+    
+                }
+    
+                span {
+    
+                    padding: 3px 0 0 10px;
+    
+                }
+    
+            }
+
+            .btn.active {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+
+            #logout {
+
+                svg {
+
+                    padding-top: 2px;
+
+                }
+
+            }
+
+        }
+
+        
+
+    }
+
+}
+
+.topnav {
+
+    position: fixed;
+    top: 0px;
+
+    left: 1.5%;
+
+    width: 97%;
+
+    background: $light-theme;
+
+    z-index: 9;
+
+    transition: all 1s ease-in-out;
+    
+    .topnav-wrapper {
+        
+        position: relative;
+        left: 0;
+
+        top: 20px;
+
+        width: 100%;
+        
+        height: $topnav-height;
+
+        background: $light-theme;
+
+        border-radius: 100px;
+
+        box-shadow:  3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+
+        transition: all 1s ease-in-out;
+
+        .toggle-sidenav {
+
+            position: relative;
+            top: 0;
+            left: 10px;
+
+            height: $topnav-height;
+            width: 60px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            float: left;
+
+            #toggleSidenavBtn {
+
+                width: 55px;
+                height: 55px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                border-radius: 100px;
+
+                box-shadow:  3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+
+                cursor: pointer;
+
+                transition: all 1s ease-in-out;
+
+            }
+
+            #toggleSidenavBtn.active {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+
+        }
+
+        .search-notes {
+
+            position: relative;
+            left: 0;
+            top: 0px;
+
+            height: $topnav-height;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            float: left;
+
+            .search-icon-wrapper {
+
+                position: absolute;
+                top: -63px;
+                left: 90px;
+
+                width: 55px;
+                height: 55px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                border-radius: 200px;
+
+                box-shadow: 3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+                z-index: 3;
+
+
+                .search-icon {
+
+                    float: left;    
+                    
+                }
+
+            }
+
+            #noteSearchWrapper {
+
+                position: absolute;
+                left: 0;
+                top: -70px;
+
+                width: 100%;
+                height: $topnav-height;
+
+                display: none;
+
+                background: $light-theme;
+
+                border-radius: 50px;
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+                z-index: 2;
+
+                #noteSearch {
+
+                    position: absolute;
+                    
+                    left: 0;
+    
+                    width: calc(100% - 6    0px);
+                    height: 100%;
+    
+                    display: block;
+
+                    padding: 2px 0 0 55px;
+
+                    background: none;
+    
+                    border: none;
+    
+                    z-index: 1;
+    
+                }
+
+            }
+
+            #cancelSearch {
+
+                position: absolute;
+                left: 300px;
+                top: -70px;
+
+                width: $topnav-height;
+                height: $topnav-height;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                float: right;
+
+                padding-top: 4px;
+
+                border-radius: 100px;
+
+                font-size: 35px;
+
+                display: none;
+                justify-content: center;
+                align-items: center;
+
+                z-index: 2;
+
+            }
+
+        }
+
+        .mode {
+
+            position: absolute;
+            bottom: -1px;
+            right: 130px;
+            
+            height: $topnav-height;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            float: left;
+
+            .toggle-mode {
+
+                position: absolute;
+            
+                cursor: pointer;
+                transform: scale(0.2);
+            
+            }
+
+        }
+
+        #loginBtn {
+
+            position: absolute;
+            right: 5px;
+
+            height: $topnav-height;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: box-shadow 0.75s ease-in-out;
+
+            div {
+
+                width: 50px;
+                height: 50px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+
+                border-radius: 50px;
+
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+            }
+
+            .auth-btn.in {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                        inset -3px -3px 8px #fffffa;
+    
+            }
+
+        }
+
+    }
+
+}
+
+.sidenav {
+
+    position: fixed;
+
+    top: 110px;
+    left: 0;
+
+    padding: 30px 0 0 1.5%;
+
+    width: 0;
+    height: calc(100% - 120px);
+
+    background: $light-theme;
+
+    overflow: hidden;
+
+    transition: width 0.75s ease-in-out;
+
+    z-index: 6;
+
+    transition: all 1s ease-in-out;
+
+    .page {
+
+        position: relative;
+
+        width: 55px;
+        height: 55px;
+
+        margin: 10px;
+        margin-bottom: 20px;
+
+        background: $light-theme;
+
+        border-radius: 30px;
+        
+        box-shadow:  3px 3px 8px #d8cec4,
+            -3px -3px 8px #fffffa;
+
+        cursor: pointer;
+
+        transition: all 1s ease-in-out;
+
+        .icon {
+
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            float: left;
+
+            span {
+
+                font-weight: bold;
+                font-size: 45px;
+
+                padding: 8px 1px 0 0;
+
+            }
+
+        }
+
+        .page-title {
+
+            position: relative;
+
+            height: 60px;
+            width: 210px;
+
+            display: flex;
+            align-items: center;
+
+            padding-top: 1.5px;
+
+            opacity: 0;
+
+            font-size: 19px;
+
+            transition: opacity 0.75s ease-in-out;
+            
+        }
+
+        span {
+
+            position: relative;
+            bottom: 2px;
+
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+        }
+
+        .edit-folder-btn-init {
+
+            position: absolute;
+            right: 10px;
+            top: 5px;
+
+            width: 45px;
+            height: 45px;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+
+            border-radius: 30px;
+
+            box-shadow: 3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+            cursor: pointer;
+
+            transition: opacity 0.75s ease-in-out;
+
+            svg {
+
+                transform: scale(0.9);
+
+            }
+
+        }
+
+        .edit-folder-btn-init.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+        }
+
+    }
+
+    .page.active {
+
+        box-shadow: inset 3px 3px 8px #d8cec4,
+            inset -3px -3px 8px #fffffa;
+
+    }
+
+}
+
+.sidenav.open {
+
+    width: 350px;
+
+    .page {
+
+        width: 320px;
+
+    }
+
+}
+
+/* App */
+
+.premium-offer, .account-preferences, .create-folder, .current-note, .edit-folder, .photo-carousel {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: 10;
+
+}
+
+.premium-offer {
+
+    .wrapper {
+
+        position: relative;
+
+        width: 300px;
+        height: 350px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        background: $light-theme;
+
+        #closePremiumOfferBtn {
+
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+            width: 45px;
+            height: 41px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding-top: 4px;
+
+            border-radius: 50px;
+
+            box-shadow: 3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+
+            font-size: 40px;
+
+            cursor: pointer;
+
+            z-index: 3;
+
+        }
+
+        #closePremiumOfferBtn.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+        }
+
+        img {
+
+            position: relative;
+            bottom: 85px;
+            right: 295px;
+
+            transform: scale(0.4);
+
+        }
+
+        .cta-text-friend {
+
+            position: relative;
+            left: 49px;
+            bottom: 200px;
+
+            font-size: 22px;
+            font-weight: bold;
+
+        }
+
+        .cta-text-invite {
+
+            position: relative;
+            bottom: 180px;
+
+        }
+
+        .cta-text {
+
+            position: relative;
+            top: 260px;
+            left: 15px;
+
+            display: block;
+
+            font-size: 20px;
+            font-weight: bold;
+
+        }
+
+        #premiumOfferVid {
+
+            position: absolute;
+            right: -85px;
+            bottom: 20px;
+
+            transform: scale(0.5);
+
+            border-radius: 1000px;
+
+            z-index: 2;
+
+        }
+
+        #upgradeBtn {
+
+            position: absolute;
+            left: 43px;
+            bottom: 20px;
+
+            width: 250px;
+            height: 40px;
+
+            padding-top: 4px;
+
+            background: #2832C2;
+            color: #fff;
+            box-shadow: 1px 1px 6px #222ba5,
+                -1px -1px 6px #2e3adf;
+
+            text-align: center;
+
+            font-size: 17px;
+
+        }
+
+        .invite-link {
+
+            position: relative;
+            bottom: 150px;
+
+            input {
+
+                width: 240px;
+                height: 37px;
+
+                float: left;
+
+                padding: 3px 10px 0 10px;
+                
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+                font-size: 13px;
+
+            }
+
+            #copyLinkBtn {
+
+                position: relative;
+                left: 10px;
+
+                width: 40px;
+                height: 40px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+        }
+        
+    }
+
+}
+
+.account-preferences {
+
+    .wrapper {
+
+        position: relative;
+
+        width: 300px;
+        height: 350px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        background: $light-theme;
+
+        #closeAccountPreferences {
+
+            position: absolute;
+
+            right: 20px;
+            top: 20px;
+
+            width: 50px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding-top: 2px;
+
+            border-radius: 50px;
+
+            box-shadow: 3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+
+            font-size: 40px;
+
+            cursor: pointer;
+
+        }
+
+        #closeAccountPreferences.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+        }
+
+        .form-title {
+
+            position: relative;
+            top: 12px;
+
+            font-size: 25px;
+
+        }
+
+        .fields {
+
+            position: relative;
+            top: 50px;
+
+            .field {
+
+                display: flex;
+                align-items: center;
+
+                margin-bottom: 30px;
+
+                .field-icon {
+
+                    position: absolute;
+                    left: 15px;
+
+                    float: left;
+
+                }
+
+                #accountName {
+
+                    padding: 2px 0 0 6px;
+
+                    transform: scale(1.15);
+
+                }
+
+                #accountEmail {
+
+                    padding: 4px 2px 0 0;
+
+                    transform: scale(0.85);
+
+                }
+
+                #accountPassword {
+
+                    left: 14px;
+
+                    padding: 2px 2px 0 0;
+
+                    transform: scale(0.9);
+
+                }
+
+                input {
+
+                    float: left;
+
+                    width: 190px;
+
+                    padding: 26px 50px 20px 60px;
+
+                }
+
+                .error, .ok {
+
+                    position: absolute;
+                    right: 20px;
+
+                    display: none;
+
+                    transform: scale(1.3);
+
+                }
+
+            }
+
+        }
+
+        .error {
+
+            fill: red;
+
+        }
+
+    }
+
+}
+
+.create-folder {
+
+    .wrapper {
+
+        position: relative;
+
+        width: 300px;
+        height: 170px;
+
+        padding: 35px;
+
+        border-radius: 50px;
+
+        background: $light-theme;
+
+        #closeNewFolderForm {
+
+            position: absolute;
+            right: 20px;
+            top: 20px;
+
+            width: 50px;
+            height: 50px;
+
+            font-size: 45px;
+
+        }
+
+        #closeNewFolderForm.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+
+        }
+
+        .form-title {
+
+            position: relative;
+
+            font-size: 25px;
+
+        }
+
+        form {
+
+            #newFolderTitleWrapper {
+
+                position: relative;
+                top: 30px;
+
+                width: 300px;
+                height: 50px;
+
+                border-radius: 50px;
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+                #newFolderTitle {
+    
+                    width: calc(100% - 40px);
+                    height: 100%;
+
+                    border: none;
+                    background: none;
+    
+                    padding: 1px 20px 5px 20px;
+    
+                }
+
+            }
+
+            .create-folder-btn {
+
+                position: relative;
+                top: 55px;
+                left: -10px;
+          
+                width: 320px;
+                height: 50px;
+
+                font-size: 18px;
+
+                box-shadow: 3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+            }
+
+            .create-folder-btn.active {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+
+            }
+
+        }
+
+    }
+
+}
+
+.edit-folder {
+
+    .wrapper {
+
+        position: relative;
+
+        width: 270px;
+        height: 170px;
+
+        padding: 30px;
+
+        border-radius: 50px;
+
+        background: $light-theme;
+
+        #closeEditFolderForm {
+
+            position: absolute;
+            right: 20px;
+            top: 20px;
+
+            width: 50px;
+            height: 50px;
+
+            padding-top: 4px;
+
+            font-size: 40px;
+
+        }
+
+        button.active {
+
+            box-shadow:  inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+        }
+
+        .form-title {
+
+            position: relative;
+
+            font-size: 23px;
+
+        }
+
+        .form {
+
+            #editFolderTitleWrapper {
+
+                position: relative;
+                top: 30px;
+
+                width: 260px;
+                height: 40px;
+
+                border-radius: 50px;
+
+                box-shadow:  inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+                float: left;
+
+                #editFolderTitle {
+
+                    background: none;
+                    border: none;
+
+                    width: calc(100% - 20px);
+    
+                    padding: 11px 20px 5px 20px;
+    
+    
+                }
+
+            }
+
+            .edit-folder-btn {
+
+                position: absolute;
+                bottom: 20px;
+                right: 40px;
+          
+                width: 160px;
+                height: 45px;
+
+                font-size: 18px;
+
+            }
+
+            .edit-folder-btn.active {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+            
+        }
+
+        .delete-folder-btn {
+
+            position: absolute;
+            left: 35px;
+            bottom: 20px;
+
+            width: 47px;
+            height: 47px;
+
+            padding-top: 5px;
+
+        }
+
+    }
+
+}
+
+.photo-carousel {
+
+    z-index: 11;
+
+    button {
+        
+        position: absolute; 
+        box-shadow: none;
+
+        width: 45px;
+        height: 45px;
+    
+    }
+
+    #closePhoto {
+
+        right: 20px;
+        top: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding-top: 3px;
+
+        font-size: 40px;
+
+        box-shadow: none;
+
+    }
+
+    #previousPhoto, #nextPhoto {
+
+        top: 49%;
+
+        width: 60px;
+        height: 60px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(246, 234, 223, 0.7);
+
+        display: none;
+
+    }
+
+    #previousPhoto {
+
+        left: 20px;
+
+        padding: 4px 4px 0 0;
+
+    }
+
+    #nextPhoto {
+
+        right: 20px;
+
+        padding: 4px 0 0 4px;
+    
+    }
+
+    img {
+
+        max-width: 90%;
+        max-height: 90%;
+
+    }
+
+}
+
+.current-note {
+
+    position: fixed;
+
+    z-index: 10;
+
+    .wrapper {
+
+        width: 100%;
+        height: 100%;
+
+        overflow-y: auto;
+ 
+        background: $light-theme;
+
+        padding-bottom: 20px;
+
+        border-radius: 0;
+
+        #currentNoteContents {display: none;}
+
+    }
+
+    .top {
+
+        position: relative;
+        left: 0;
+        top: 20px;
+
+        height: 50px;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+
+        #currentNoteTitleWrapper {
+
+            position: relative;
+            left: 2.5%;
+
+            width: calc(95% - 70px);
+
+            border-radius: 50px;
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+            input {
+
+                width: calc(100% - 40px);
+    
+                padding: 15px 60px 14px 20px;
+    
+                border: none;
+                background: none;
+
+                font-size: 20px;
+                font-weight: bold;
+    
+            }
+
+        }
+
+        #closeCurrentNote {
+
+            position: absolute;
+            right: 12px;
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50px;
+
+            box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+            font-size: 40px;
+            padding: 2px 0 0 0;
+
+        }
+
+        #closeCurrentNote.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+        
+        }
+
+    }
+
+    .photos {
+
+        position: relative;
+
+        width: calc(100% - 50px);
+
+        display: none;
+        align-items: center;
+
+        margin: 25px 25px 0 25px;
+
+        .photo {
+
+            position: relative;
+            width: 200px;
+            height: 200px;
+
+            display: inline-block;
+
+            margin: 20px 20px 0 20px;
+            
+            #removePhoto {
+
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                
+                width: 40px;
+                height: 40px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                opacity: 0;
+
+                box-shadow: none;
+
+                backdrop-filter: blur(17px) saturate(180%);
+                -webkit-backdrop-filter: blur(17px) saturate(180%);
+                background-color: rgba(255, 255, 255, 0.43);
+
+            }
+
+            img {
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: cover;
+
+                border-radius: 10px;
+
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+            }
+
+        }
+
+    }
+
+    .rte {
+
+        position: relative;
+        top: 20px;
+        left: calc(2.5% - 20px);
+        
+        width: calc(95% - 20px);
+        height: 100px;
+
+        .rte-wrapper {
+
+            position: absolute;
+            left: 0;
+
+            height: 70px;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            
+            margin: 20px;
+            padding: 0 10px 0 10px;
+
+            border-radius: 100px;
+
+            overflow-x: auto;
+
+            box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+            button {
+
+                position: relative;
+    
+                min-width: 45px;
+                height: 45px;
+    
+                margin: 0 10px 0 10px;
+                
+                border-radius: 50px;
+    
+                font-size: 17px;
+    
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+    
+            }
+    
+            button.active {
+    
+                box-shadow:  inset 3px 3px 8px #d8cec4,
+                        inset -3px -3px 8px #fffffa;
+    
+            }
+
+            svg {
+
+                padding: 4px 0 0 0;
+
+            }
+
+        }
+
+    }
+
+    .current-note-folders-form {
+    
+        position: absolute;
+        right: 20px;
+        top: 60px;
+
+        width: 300px;
+        height: 500px;
+
+        background: $light-theme;
+
+        display: none;
+        opacity: 0;
+
+        border-radius: 20px;
+        padding: 20px;
+
+        box-shadow:  3px 3px 8px #d8cec4,
+            -3px -3px 8px #fffffa;
+
+        z-index: 8;
+
+        #closeCurrentNoteFoldersForm {
+
+            position: absolute;
+            top: 10px;
+            right: 10px;
+
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50px;
+
+            background: $light-theme;
+            box-shadow:  3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+
+            font-size: 40px;
+
+            cursor: pointer;
+
+        }
+
+        #closeCurrentNoteFoldersForm.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+        }
+
+        #folderSearchWrapper {
+
+            position: relative;
+            top: 50px;
+
+            width: 270px;
+
+            border-radius: 50px;
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+            .folder-search {
+
+                width: calc(100% - 15px);
+
+                background: none;
+
+                border: none;
+    
+                padding: 10px 15px 10px 15px;
+    
+            }
+
+        }
+
+        
+
+        .folder-section-title {
+
+            margin-bottom: 20px;
+            font-size: 18px;
+
+        }
+
+        .folder-title {
+
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            
+            font-size: 20px;
+
+        }
+
+        .folder-list {
+
+            position: relative;
+            top: 70px;
+
+            width: 270px;
+            max-height: 360px;
+
+            box-shadow: 3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+            padding: 15px;
+            
+            border-radius: 20px;
+
+            overflow: hidden;
+            overflow-y: auto;
+
+            input {display: none}
+
+            #noteFolder {
+
+                position: relative;
+
+                width: 250px;
+
+                padding: 10px;
+                margin-bottom: 20px;
+
+                border-radius: 50px;
+
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                cursor: pointer;
+
+            }
+
+            #noteFolder.alone {
+
+                margin: 0;
+
+            }
+
+            #noteFolder.inNote {
+
+                box-shadow:  inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+
+        }
+
+        .create-new-folder-from-search-current {
+
+            position: relative;
+            top: 85px;
+
+            display: none;
+
+            #createFolderInNote {
+
+                padding: 10px;
+    
+                font-size: 17px;
+    
+            }
+
+        }
+
+    }
+
+    
+    .content {
+
+        position: relative;
+        top: 40px;
+        left: 2.5%;
+
+        width: 95%;
+        height: calc(100% - 250px);
+
+        overflow: visible;
+
+        .current-note-content {
+
+            height: 100%;
+            overflow: auto;
+
+            padding: 25px;
+
+            border-radius: 30px;
+
+            font-size: 19px;
+
+            box-shadow:  inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+        }
+
+    }
+
+}
+
+.new-note, .notes {
+
+    position: relative;
+
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.new-note {
+
+    position: relative;
+
+    top: 120px;
+
+    height: 80px;
+
+    transition: height 0.75s ease-in-out;
+
+    .wrapper {
+        
+        position: relative;
+        width: 800px;
+        height: 60px;
+        
+        display: block;
+        align-items: center;
+        
+        border-radius: 30px;
+
+        box-shadow:  3px 3px 8px #d8cec4,
+            -3px -3px 8px #fffffa;
+
+        transition: all 0.75s ease-in-out;
+
+        .filters {
+
+            position: relative;
+
+            height: 60px;
+            width: 125px;
+
+            display: none;
+            align-items: center;
+
+            float: left;
+
+            div {
+
+                width: 45px;
+                height: 45px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                margin-left: 15px;
+
+                border-radius: 50px;
+                
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+                cursor: pointer;
+
+                transition: all 1s ease-in-out;
+
+            }
+
+            div.active {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+
+        }
+
+        #closeNewNote {
+
+            position: relative;
+            top: 8px;
+            left: 15px;
+
+            width: 45px;
+            height: 42px;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding-top: 3px;
+
+            border-radius: 50px;
+                
+            box-shadow:  3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+
+            cursor: pointer;
+
+            font-size: 40px;
+
+            transition: all 1s ease-in-out;
+
+        }
+
+        #closeNewNote.active {
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+        }
+
+        .new-note-title {
+
+            position: relative;
+            top: 5px;
+            left: 6px;
+
+            height: 50px;
+            width: 748px;
+
+            padding: 0 20px 0 20px;
+
+            float: left;
+
+            transition: all 1s ease-in-out, width 0s;
+
+        }
+
+        .new-note-rte {
+
+            position: relative;
+            top: 3px;
+            left: -8px;
+            
+            width: 95.5%;
+            height: 100px;
+    
+            display: none;
+            opacity: 0;
+
+            overflow: hidden;
+            overflow-x: auto;
+    
+            button {
+    
+                position: relative;
+    
+                width: 45px;
+                height: 45px;
+    
+                margin: 0 10px 0 10px;
+                
+                border-radius: 50px;
+    
+                font-size: 17px;
+    
+                box-shadow:  3px 3px 8px #d8cec4,
+                        -3px -3px 8px #fffffa;
+
+                transition: all 0.75s ease-in-out;
+    
+            }
+    
+            button.active {
+    
+                box-shadow:  inset 3px 3px 8px #d8cec4,
+                        inset -3px -3px 8px #fffffa;
+    
+            }
+    
+            .rte-wrapper {
+    
+                position: absolute;
+                left: 0;
+    
+                height: 70px;
+                width: 450px;
+    
+                display: flex;
+                align-items: center;
+                
+                margin: 20px;
+                padding: 0 10px 0 10px;
+    
+                border-radius: 100px;
+    
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+                transition: all 0.75s ease-in-out;
+    
+                svg {
+    
+                    padding: 4px 0 0 0;
+    
+                }
+    
+            }
+    
+        }
+    
+        #newNoteContentCE {
+
+            position: relative;
+            top: 20px;
+            left: 10px;
+    
+            width: 740px;
+            height: 300px;
+
+            display: none;
+            opacity: 0;
+    
+            padding: 20px;
+    
+            border-radius: 30px;
+    
+            box-shadow:  inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+            font-size: 19px;
+
+            overflow: auto;
+
+            transition: box-shadow 0.75s ease-in-out, background 0.75s ease-in-out;
+
+        }
+
+        #newNoteData {
+
+            input {display: none;}
+
+            .create-note-btn {
+
+                position: relative;
+                top: 42px;
+                
+                width: 300px;
+                height: 50px;
+    
+                display: none;
+                opacity: 0;
+    
+                margin: 0 auto;
+    
+                text-align: center;
+    
+                font-size: 19px;
+    
+                border-radius: 100px;
+    
+                box-shadow: 3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+                transition: background 1s ease-in-out, box-shadow 1s ease-in-out, color 1s ease-in-out;
+    
+            }
+
+            .create-note-btn.active {
+
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+
+        }
+
+        .new-note-folders-form {
+    
+            position: absolute;
+            right: 20px;
+            top: 60px;
+    
+            width: 300px;
+            height: 500px;
+    
+            background: $light-theme;
+    
+            display: none;
+            opacity: 0;
+    
+            border-radius: 20px;
+            padding: 20px;
+    
+            box-shadow:  3px 3px 8px #d8cec4,
+                -3px -3px 8px #fffffa;
+    
+            z-index: 8;
+
+            transition: background 0.75s ease-in-out, box-shadow 0.75s ease-in-out;
+    
+            #closeNewNoteFoldersForm {
+    
+                position: absolute;
+                top: 10px;
+                right: 10px;
+    
+                width: 45px;
+                height: 45px;
+    
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    
+                border-radius: 50px;
+    
+                background: $light-theme;
+                box-shadow:  3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+    
+                font-size: 40px;
+    
+                cursor: pointer;
+
+                transition: all 0.75s ease-in-out;
+    
+            }
+    
+            #closeNewNoteFoldersForm.active {
+    
+                box-shadow: inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+    
+            }
+    
+            .new-note-folder-search {
+    
+                position: relative;
+                top: 50px;
+                
+                width: 270px;
+    
+                padding: 10px 15px 10px 15px;
+    
+                transition: all 0.75s ease-in-out;
+
+            }
+    
+            .folder-section-title {
+    
+                margin-bottom: 20px;
+                font-size: 18px;
+    
+            }
+    
+            .folder-title {
+    
+                position: absolute;
+                top: 20px;
+                left: 15px;
+                
+                font-size: 20px;
+    
+            }
+    
+            .new-note-folder-list {
+    
+                position: relative;
+                top: 70px;
+    
+                width: 270px;
+                max-height: 360px;
+    
+                box-shadow:  3px 3px 8px #d8cec4,
+                        -3px -3px 8px #fffffa;
+    
+                padding: 15px;
+                
+                border-radius: 20px;
+    
+                overflow: hidden;
+                overflow-y: auto;
+    
+                input {display: none}
+
+                transition: all 0.75s ease-in-out;
+    
+                #newNoteFolder {
+    
+                    position: relative;
+    
+                    width: 250px;
+    
+                    padding: 10px;
+                    margin-bottom: 20px;
+    
+                    border-radius: 50px;
+    
+                    box-shadow:  3px 3px 8px #d8cec4,
+                        -3px -3px 8px #fffffa;
+    
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+    
+                    cursor: pointer;
+
+                    transition: all 0.75s ease-in-out;
+    
+                }
+    
+                #newNoteFolder.alone {
+    
+                    margin: 0;
+    
+                }
+    
+                #newNoteFolder.inNote {
+    
+                    box-shadow:  inset 3px 3px 8px #d8cec4,
+                        inset -3px -3px 8px #fffffa;
+    
+                }
+    
+            }
+    
+            .create-new-folder-from-search {
+    
+                position: relative;
+                top: 85px;
+    
+                display: none;
+    
+                #createFolderInNoteNew {
+    
+                    padding: 10px;
+        
+                    font-size: 17px;
+        
+                }
+    
+            }
+    
+        }
+
+    }
+
+}
+
+.new-note.open {
+
+    height: 610px;
+
+    .wrapper {
+
+        top: 10px;
+
+        height: 610px;
+
+        display: block;
+
+        border-radius: 30px;
+
+        .filters {
+
+            display: flex;
+
+        }
+
+        .new-note-title {
+
+            top: 5px;
+
+            width: 565px;
+
+        }
+
+        #closeNewNote {
+
+            display: flex;
+
+        }
+
+        .new-note-rte {
+
+            display: block;
+
+        }
+
+        #newNoteContentCE {
+
+            display: block;
+    
+        }
+
+        #newNoteData {
+
+            .create-note-btn {
+
+                display: block;
+    
+            }
+
+        }
+
+    }
+
+}
+
+.notes {
+
+    position: relative;
+    top: 150px;
+
+    height: calc(100% - 200px);
+    width: calc(100% - 20px);
+
+    padding-bottom: 30px;
+
+    .first-note {
+
+        position: absolute;
+        top: 50px;
+
+        display: flex;
+        flex-direction: column;
+
+        display: none;
+
+        span {
+
+            margin-bottom: 30px;
+
+        }
+
+        .warn-text {
+
+            font-weight: bold;
+            font-size: 40px;
+
+        }
+
+        .cta-text {
+
+            font-size: 20px;
+
+        }
+
+
+        .cta-btn {
+
+            padding: 10px;
+
+            font-size: 20px;
+
+            transition: all 1s ease-in-out;
+
+        }
+
+    }
+
+    .failed-search {
+
+        position: relative;
+        top: 40px;
+
+        display: block;
+
+        font-weight: bold;
+
+    }
+
+    .note-section-title {
+
+        position: relative;
+
+        font-weight: bold;
+        font-size: 30px;
+
+    }
+
+    .note-section {
+
+        position: relative;
+        top: 10px;
+
+        padding-top: 20px;
+
+        .section-title {
+
+            font-size: 23px;
+
+        }
+
+    }
+
+    .note {
+
+        position: relative;
+        top: 20px;
+
+        min-height: 23px;
+        width: 280px;
+
+        padding: 20px;
+        margin-bottom: 30px;
+
+        border-radius: 30px;
+
+        box-shadow:  3px 3px 8px #c5bbb2,
+            -3px -3px 8px #ffffff;
+
+        transition: all 1s ease-in-out;
+
+        .empty {
+
+            position: absolute;
+            top: 23px;
+
+            display: none;
+
+            color: $light-placeholder;
+            font-size: 19px;
+
+        }
+
+        .note-actions {
+
+            position: absolute;
+            top: 10px;
+            right: 9px;
+
+            opacity: 0;
+
+            z-index: 2;
+
+            div {
+
+                width: 45px;
+                height: 45px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                margin-left: 20px;
+                float: left;
+
+                border-radius: 100px;
+
+                background: $light-theme;
+
+                box-shadow:  3px 3px 8px #d8cec4,
+                        -3px -3px 8px #fffffa;
+
+                cursor: pointer;
+
+                transition: all 1s ease-in-out;
+
+            }
+
+            div.active {
+
+                box-shadow:  inset 3px 3px 8px #d8cec4,
+                    inset -3px -3px 8px #fffffa;
+
+            }
+
+        }
+
+        .text {
+
+            position: relative;
+
+            z-index: 1;
+
+            span {position: relative;}
+
+            .title {
+
+                top: 0;
+
+                font-weight: bold;
+
+            }
+
+            .content {
+
+                top: 5px;
+
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 15;
+                -webkit-box-orient: vertical;
+
+            }
+
+        }
+
+        .folders {
+
+            position: relative;
+            top: 10px;
+
+            width: calc(100% - 60px);
+            height: 45px;
+
+            padding: 5px;
+
+            overflow: hidden;
+
+            .folder {
+
+                position: relative;
+
+                min-width: 15px;
+                
+                float: left;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                padding: 6px 7px 5px 7px;
+                margin: 15px 15px 0 0;
+
+                border-radius: 100px;
+
+                box-shadow: 3px 3px 8px #d8cec4,
+                    -3px -3px 8px #fffffa;
+
+                transition: all 1s ease-in-out;
+
+                span {
+
+                    font-size: 16px;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .empty-trash {
+
+        margin-bottom: 20px;
+
+        #emptyTrashBtn {
+
+            width: 300px;
+            height: 50px;
+
+            display: block;
+
+            margin-top: 20px;
+
+            text-align: center;
+    
+            font-size: 19px;
+
+            border-radius: 100px;
+
+        }
+
+        #emptyTrashBtn.active {
+
+            width: 300px;
+            height: 50px;
+
+            display: block;
+
+            margin-top: 20px;
+
+            text-align: center;
+    
+            font-size: 19px;
+
+            border-radius: 100px;
+
+            box-shadow: inset 3px 3px 8px #d8cec4,
+                inset -3px -3px 8px #fffffa;
+
+        }
+
+    }
+
+}
+
+/* Premium offer */
+
+.premium {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+
+    opacity: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    .wrapper {
+
+        position: relative;
+
+        height: 450px;
+        width: 300px; 
+
+        background: #fff;
+
+        border-radius: 50px;
+
+    }
+
+}
+
+/* Dark mode */
+
+body.dark::-webkit-scrollbar-thumb {
+
+    background: $dark-text;
+    border-radius: 50px;
+
+}
+
+body.dark {
+
+    background: $dark-theme;
+    color: $dark-text;
+
+    #Icon_feather-mail {
+
+        path {
+
+            stroke: $dark-text;
+
+        }
+
+    }
+
+    input {
+
+        color: $dark-text;
+        background: $dark-theme;
+
+        box-shadow: inset 4px 4px 8px #0e1011,
+            inset -4px -4px 8px #1c1e1f;
+
+    }
+
+    input::placeholder {
+
+        color: $dark-placeholder;
+
+    }
+
+    button {
+
+        background: $dark-theme;
+        color: $dark-text;
+
+        box-shadow:  4px 4px 8px #0e1011,
+            -4px -4px 8px #1c1e1f;
+
+    }
+
+    svg {
+
+        fill: $dark-text;
+
+    }
+
+    [contenteditable]:empty:before {
+
+        color: $dark-placeholder;
+    
+    }
+
+    .wrapper {
+
+        background: $dark-theme;
+
+        #closePremiumOfferBtn {
+
+            box-shadow:  4px 4px 8px #0e1011,
+                -4px -4px 8px #1c1e1f;
+
+        }
+
+        #closePremiumOfferBtn.active {
+
+            box-shadow: inset 4px 4px 8px #0e1011,
+                inset -4px -4px 8px #1c1e1f;
+
+        }
+
+    }
+
+    .account-preferences { 
+
+        #closeAccountPreferences {
+
+            box-shadow:  4px 4px 8px #0e1011,
+                -4px -4px 8px #1c1e1f;
+
+        }
+
+        #closeAccountPreferences.active {
+
+            box-shadow: inset 4px 4px 8px #0e1011,
+                inset -4px -4px 8px #1c1e1f;
+
+        }
+
+    }
+    
+    .profile-dropdown {
+
+        background: $dark-theme;
+
+        box-shadow:  4px 4px 8px #0e1011,
+                -4px -4px 8px #1c1e1f;
+
+        .buttons {
+
+            a {
+
+                .btn {
+
+                    box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .create-folder {
+
+        .wrapper {
+
+            background: $dark-theme;
+
+            #closeNewFolderForm.active {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+    
+            }
+
+            #newFolderTitleWrapper {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+
+            }
+
+            .create-folder-btn {
+
+                box-shadow: 4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+
+            }
+
+            .create-folder-btn.active {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+
+            }
+
+        }
+
+    }
+
+    .edit-folder {
+
+        .wrapper {
+
+            background: $dark-theme;
+
+            .form {
+
+                .edit-folder-btn {
+
+                    box-shadow: 4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                }
+
+                .edit-folder-btn.active {
+
+                    box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+
+                }
+
+            }
+
+            button.active {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+    
+            }
+
+        }
+
+    }
+
+
+    .topnav {
+
+        background: $dark-theme;
+
+        .topnav-wrapper {
+
+            background: $dark-theme;
+
+            box-shadow:  4px 4px 8px #0e1011,
+                -4px -4px 8px #1c1e1f;
+
+            #toggleSidenavBtn {
+
+                box-shadow:  4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+    
+            }
+    
+            #toggleSidenavBtn.active {
+    
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+    
+            }
+
+            .premium-btn {
+
+                box-shadow: 4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+
+            }
+
+            .premium-btn.in {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+
+            }
+    
+            .initials {
+    
+                box-shadow:  4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+    
+            }
+    
+            .initials.active {
+    
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+    
+            }
+
+            .search-icon-wrapper {
+
+                box-shadow:  4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+
+            }
+
+        }
+
+    }
+
+    .sidenav {
+
+        background: $dark-theme;
+
+        transition: all 1s ease-in-out;
+
+        .page {
+
+            background: $dark-theme;
+
+            box-shadow:  4px 4px 8px #0e1011,
+                -4px -4px 8px #1c1e1f;
+
+            .edit-folder-btn-init {
+
+                box-shadow:  4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+
+            }
+
+            .edit-folder-btn-init.active {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+
+            }
+
+        }
+
+        .page.active {
+
+            box-shadow: inset 4px 4px 8px #0e1011,
+                inset -4px -4px 8px #1c1e1f;
+    
+        }
+
+    }
+
+    .sidenav.open {
+
+        box-shadow: 4px 4px 8px #0e1011,
+            -4px -4px 8px transparent;
+
+    }
+
+    .sidenav::-webkit-scrollbar-thumb {
+
+        background: $dark-text;
+    
+    }
+
+    .new-note {
+
+        .wrapper {
+
+            box-shadow:  4px 4px 8px #0e1011,
+                -4px -4px 8px #1c1e1f;
+
+                .filters {
+
+                    div {
+
+                        box-shadow:  4px 4px 8px #0e1011,
+                            -4px -4px 8px #1c1e1f;
+
+                    }
+
+                    div.active {
+
+                        box-shadow: inset 4px 4px 8px #0e1011,
+                            inset -4px -4px 8px #1c1e1f;
+                        
+                    }
+                
+                }
+
+            #closeNewNote {
+
+                box-shadow: 4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+
+            }
+
+            #closeNewNote.active {
+
+                box-shadow:  inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+
+            }
+
+            .new-note-rte {
+
+                .rte-wrapper {
+
+                    box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                }
+
+                .wrapper {
+
+                    box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                }
+
+                button {
+
+                    box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                }
+
+                button.active {
+
+                    box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+
+                }
+
+            }
+
+            #newNoteContentCE {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+
+            }
+
+            #newNoteData {
+
+                .create-note-btn {
+
+                    box-shadow: 4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+    
+                }
+
+                .create-note-btn.active {
+
+                    box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+    
+                }
+
+            }
+
+            .new-note-folders-form {
+
+                background: $dark-theme;
+
+                box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                #closeNewNoteFoldersForm {
+
+                    background: $dark-theme;
+
+                    box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                }
+
+                #closeNewNoteFoldersForm.active {
+
+                    box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+
+                }
+
+                .new-note-folder-list {
+
+                    box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+                    #newNoteFolder {
+
+                        box-shadow:  4px 4px 8px #0e1011,
+                            -4px -4px 8px #1c1e1f;
+
+                    }
+
+                    #newNoteFolder.inNote {
+
+                        box-shadow:  inset 4px 4px 8px #0e1011,
+                            inset -4px -4px 8px #1c1e1f;
+
+                    }
+
+                }
+
+                .new-note-folder-list::-webkit-scrollbar-thumb {
+
+                    background: $dark-text;
+                
+                }
+
+            }
+
+        }
+
+    }
+
+    .photo-carousel {
+
+        #previousPhoto, #nextPhoto {
+
+            background: rgba(21, 23, 24, 0.7);
+
+            box-shadow: none;
+
+        }
+    
+    }
+
+    .current-note {
+
+        #currentNoteWrapper::-webkit-scrollbar-thumb {
+
+            background: $dark-text;
+        
+        }
+
+        .wrapper {
+
+            background: $dark-theme;
+
+            .top {
+
+                #currentNoteTitleWrapper {
+
+                    box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+
+                }
+
+                #closeCurrentNote {
+
+                    box-shadow:  4px 4px 8px #0a0b0c,
+                        -4px -4px 8px #202324;
+
+                }
+
+            }
+
+            .photos {
+
+                .photo {
+
+                    img {
+
+                        box-shadow:  4px 4px 8px #0a0b0c,
+                            -4px -4px 8px #202324;
+
+                    }
+
+                    #removePhoto {
+
+                        svg {
+
+                            fill: $dark-theme;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .current-note-content::-webkit-scrollbar-thumb {
+
+                background: $dark-text;
+                border-radius: 50px;
+            
+            }
+
+            .rte {
+
+                .rte-wrapper {
+
+                    box-shadow:  4px 4px 8px #0a0b0c,
+                        -4px -4px 8px #202324;
+
+                    button {
+
+                        box-shadow:  4px 4px 8px #0a0b0c,
+                            -4px -4px 8px #202324;
+
+                    }
+
+                    button.active {
+
+                        box-shadow: inset 4px 4px 8px #0a0b0c,
+                            inset -4px -4px 8px #202324;
+
+                    }
+
+                    #photoBtnCurrent {
+
+                        svg {
+
+                            path {
+
+                                fill: $dark-text;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                .rte-wrapper::-webkit-scrollbar-thumb {
+
+                    background: $dark-text;
+                
+                }
+
+            }
+
+            .current-note-folders-form {
+
+                background: $dark-theme;
+
+                box-shadow: 4px 4px 8px #0a0b0c,
+                    -4px -4px 8px #202324;
+
+                #closeCurrentNoteFoldersForm {
+
+                    background: $dark-theme;
+
+                    box-shadow: 4px 4px 8px #0a0b0c,
+                        -4px -4px 8px #202324;
+                    
+                }
+                
+                #closeCurrentNoteFoldersForm.active {
+
+                    box-shadow: inset 4px 4px 8px #0a0b0c,
+                        inset -4px -4px 8px #202324;
+
+                }
+
+                #folderSearchWrapper {
+
+                    box-shadow: inset 4px 4px 8px #0e1011,
+                        inset -4px -4px 8px #1c1e1f;
+
+                }
+
+                .folder-list::-webkit-scrollbar-thumb {
+
+                    background: $dark-text;
+                
+                }
+
+                .folder-list {
+
+                    box-shadow: 4px 4px 8px #0a0b0c,
+                        -4px -4px 8px #202324;
+
+                    #noteFolder {
+
+                        box-shadow: 4px 4px 8px #0a0b0c,
+                            -4px -4px 8px #202324;
+
+                    }
+
+                    #noteFolder.inNote {
+
+                        box-shadow: inset 4px 4px 8px #0a0b0c,
+                            inset -4px -4px 8px #202324;
+
+                    }
+
+                }
+
+            }
+
+            .current-note-folders-form::-webkit-scrollbar-thumb {
+
+                background: $dark-text;
+            
+            }
+
+            .current-note-content {
+                
+                box-shadow: inset 4px 4px 8px #0a0b0c,
+                        inset -4px -4px 8px #202324;
+                
+            }
+
+            .current-note-folders {
+
+                .folder {
+
+                    box-shadow: 4px 4px 8px #0a0b0c,
+                        -4px -4px 8px #202324;
+
+                }
+
+                #removeFolder {
+                    
+                    box-shadow: 4px 4px 8px #0a0b0c,
+                        -4px -4px 8px #202324;
+                    
+                }
+
+                #removeFolder.active {
+
+                    box-shadow: inset 4px 4px 8px #0a0b0c,
+                        inset -4px -4px 8px #202324;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .note {
+
+        box-shadow:  4px 4px 8px #0a0b0c,
+            -4px -4px 8px #202324;
+
+        .empty {
+
+            color: $dark-placeholder;
+
+        }
+
+        .note-actions {
+
+            div {
+
+                box-shadow:  4px 4px 8px #0e1011,
+                        -4px -4px 8px #1c1e1f;
+
+            }
+
+            div.active {
+
+                box-shadow: inset 4px 4px 8px #0e1011,
+                    inset -4px -4px 8px #1c1e1f;
+
+            }
+
+        }
+
+        .folders {
+
+            .folder {
+
+                box-shadow:  4px 4px 8px #0e1011,
+                    -4px -4px 8px #1c1e1f;
+
+            }
+
+        }
+
+    }
+
+    .notes {
+
+        #emptyTrashBtn.active {
+
+            box-shadow: inset 4px 4px 8px #0e1011,
+                inset -4px -4px 8px #1c1e1f;
+
+        }
+
+    }
+
+}
+
+svg.error {
+
+    path {
+
+        fill: red;
+
+    }
+
+}
+
+/* Toggle mode btn */
+
+.toggle-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.toggle-slot {
+    position: relative;
+    height: 10em;
+    width: 20em;
+    border-radius: 10em;
+    background: #f6eadf;
+    transition: background-color 250ms;
+    box-shadow:  3px 3px 8px #c5bbb2,
+            -3px -3px 8px #fffffa;
+
+    transition: all 1s ease-in-out;
+}
+
+.toggle-checkbox:checked ~ .toggle-slot {
+
+    background-color: $dark-theme;
+
+    box-shadow:  4px 4px 8px #0a0b0c,
+            -4px -4px 8px #1c1e1f;
+
+}
+
+.toggle-button {
+    transform: translate(11.75em, 1.75em);
+    position: absolute;
+    height: 6.5em;
+    width: 6.5em;
+    border-radius: 50%;
+    background-color: #ffeccf;
+    box-shadow: inset 0px 0px 0px 0.75em #ffbb52;
+    transition: all 1s ease-in-out, transform 500ms cubic-bezier(.26,2,.46,.71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .toggle-button {
+    background-color: $dark-theme;
+    box-shadow: inset 0px 0px 0px 0.75em $dark-text;
+    transform: translate(1.75em, 1.75em);
+}
+
+.sun-icon {
+    position: absolute;
+    height: 6em;
+    width: 6em;
+    color: #ffbb52;
+
+    transition: all 1s ease-in-out;
+
+}
+
+.sun-icon-wrapper {
+    position: absolute;
+    height: 6em;
+    width: 6em;
+    opacity: 1;
+    transform: translate(2em, 2em) rotate(15deg);
+    transform-origin: 50% 50%;
+    transition: opacity 150ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .sun-icon-wrapper {
+    opacity: 0;
+    transform: translate(3em, 2em) rotate(0deg);
+}
+
+.moon-icon {
+    position: absolute;
+    height: 6em;
+    width: 6em;
+    color: $dark-text;
+
+    transition: all 1s ease-in-out;
+
+}
+
+.moon-icon-wrapper {
+    position: absolute;
+    height: 6em;
+    width: 6em;
+    opacity: 0;
+    transform: translate(11em, 2em) rotate(0deg);
+    transform-origin: 50% 50%;
+    transition: opacity 150ms, transform 500ms cubic-bezier(.26,2.5,.46,.71);
+}
+
+.toggle-checkbox:checked ~ .toggle-slot .moon-icon-wrapper {
+    opacity: 1;
+    transform: translate(12em, 2em) rotate(-15deg);
+}

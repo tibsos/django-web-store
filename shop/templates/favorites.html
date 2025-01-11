@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Избранное</h1>
+
+    {% if favorites %}
+    <div class="favorites-items">
+        <table>
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена</th>
+                    <th>Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for favorite in favorites %}
+                <tr>
+                    <td>
+                        <a href="{% url 'product_detail' slug=favorite.product.slug %}">
+                            <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" class="product-image">
+                            {{ favorite.product.name }}
+                        </a>
+                    </td>
+                    <td>{{ favorite.product.price }} руб.</td>
+                    <td>
+                        <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>Ваш список избранных товаров пуст.</p>
+    <a href="{% url 'product_list' %}">Перейти в магазин</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    /* Стили для таблиц */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .product-image {
+        max-width: 50px;
+        margin-right: 10px;
+    }
+
+    /* Стили для кнопок */
+    button {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #c82333;
+    }
+
+    /* Стили для информации профиля */
+    .favorites-items {
+        margin-top: 20px;
+    }
+
+    .favorites-items table th, .favorites-items table td {
+        text-align: left;
+    }
+</style>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Товары</h1>
+
+    <!-- Форма поиска товаров -->
+    <form method="GET" action="{% url 'product_list' %}">
+        <input type="text" name="q" placeholder="Поиск товаров..." value="{{ request.GET.q }}">
+        <button type="submit"><i class="fas fa-search"></i> Найти</button>
+    </form>
+
+    <div class="categories">
+        <h2>Категории</h2>
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'category_products' slug=category.slug %}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="products">
+        <h2>Все товары</h2>
+        <ul>
+            {% for product in products %}
+                <li class="product-item">
+                    <a href="{% url 'product_detail' slug=product.slug %}">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.price }} руб.</p>
+                    </a>
+                </li>
+            {% empty %}
+                <p>Товары не найдены.</p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

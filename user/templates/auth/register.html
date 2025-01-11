@@ -1,0 +1,663 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+
+<html lang="ru">
+
+    <head>
+
+                <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG2SLVG8BT"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EG2SLVG8BT');
+        </script>
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript" >
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        
+            ym(96442170, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true
+            });
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/96442170" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Регистрация | Блокнотик</title>
+
+        <link rel="sitemap" type="application/xml" href="{% static 'sitemap.xml' %}">
+
+        <meta name="description" content="Бесплатная онлайн регистрация в Блокнотике">
+        <meta name="keywords" content="блокнотик, блокнот онлайн, онлайн тетрадь, заметки онлайн, регистрация, зарегистрироваться, блокнот онлайн бесплатно, текстовик, программа для заметок, совместные заметки, голосовой блокнот онлайн, онлайн блокнот для записей">
+
+        <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+
+        {% compress css %}
+        
+            {% if m %}
+                
+                <link rel="stylesheet" href="{% static 'scss/auth/login_mobile.scss' %}" type="text/x-scss">
+            
+            {% else %}
+            
+                <link rel="stylesheet" href="{% static 'scss/auth/login.scss' %}" type="text/x-scss">
+
+            {% endif %}
+        
+        {% endcompress %}
+
+        <script src="{% static 'packages/jquery-3.6.1.min.js' %}"></script>
+
+    </head>
+
+    <body>
+        
+        {% if m %}
+
+            <div class="main" style="background: #FAE3CE;">
+
+                <div class="wrapper register">
+
+                <a href="/">
+
+                    <div class="brand">
+    
+                        <div class="wrapper">
+    
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19.394" height="28.21" viewBox="0 0 19.394 28.21">
+                                <path id="Icon_awesome-lightbulb" data-name="Icon awesome-lightbulb" d="M5.293,25.033a1.764,1.764,0,0,0,.3.975l.942,1.415A1.763,1.763,0,0,0,8,28.21h3.4a1.763,1.763,0,0,0,1.468-.787l.942-1.415a1.762,1.762,0,0,0,.3-.975l0-2.113H5.29l0,2.113ZM0,9.7a9.643,9.643,0,0,0,2.4,6.379,15.834,15.834,0,0,1,2.877,5.039c0,.014.006.043.006.043h8.829c0-.014,0-.028.006-.043a15.834,15.834,0,0,1,2.877-5.039A9.7,9.7,0,1,0,0,9.7ZM9.7,5.289A4.413,4.413,0,0,0,5.289,9.7a.882.882,0,0,1-1.763,0A6.178,6.178,0,0,1,9.7,3.526a.882.882,0,0,1,0,1.763Z" transform="translate(0 0)"></path>
+                            </svg>
+    
+                        </div>
+        
+                    </div>
+
+                </a>
+    
+                <h1>Добро пожаловать в Блокнотик!</h1>
+
+                
+                <form method="POST">
+                    
+                    {% csrf_token %}
+                    
+                    <div class="unique">
+
+                        <span>Эта почта уже используется</span>
+
+                    </div>
+    
+                    <div class="fields">
+    
+                        <div>
+
+                            <svg data-field-icon xmlns="http://www.w3.org/2000/svg" width="23.339" height="23.34" viewBox="0 0 23.339 23.34">
+                                <path id="Icon_ionic-ios-person" data-name="Icon ionic-ios-person" d="M27.828,27.251c-.438-1.933-2.936-2.875-3.8-3.179a28.323,28.323,0,0,0-3.167-.608,3.218,3.218,0,0,1-1.465-.675,12.8,12.8,0,0,1-.1-3,9.016,9.016,0,0,0,.693-1.319,17.013,17.013,0,0,0,.511-2.3s.5,0,.675-.875a8.612,8.612,0,0,0,.45-2.036c-.036-.7-.419-.681-.419-.681a10.657,10.657,0,0,0,.413-3.118c.055-2.5-1.9-4.96-5.446-4.96-3.592,0-5.507,2.462-5.452,4.96a11.116,11.116,0,0,0,.407,3.118s-.383-.018-.419.681a8.612,8.612,0,0,0,.45,2.036c.17.875.675.875.675.875a17.013,17.013,0,0,0,.511,2.3,9.016,9.016,0,0,0,.693,1.319,12.8,12.8,0,0,1-.1,3,3.218,3.218,0,0,1-1.465.675,28.323,28.323,0,0,0-3.167.608c-.863.3-3.361,1.246-3.8,3.179a.486.486,0,0,0,.48.59H27.354A.485.485,0,0,0,27.828,27.251Z" transform="translate(-4.501 -4.5)"/>
+                            </svg>
+
+                            <svg id="ne" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Warning Icon "><title>Warning Icon</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.999756C4.13401 0.999756 1 4.13376 1 7.99976C1 11.8657 4.13401 14.9998 8 14.9998C11.866 14.9998 15 11.8657 15 7.99976C15 4.13376 11.866 0.999756 8 0.999756ZM0 7.99976C0 3.58148 3.58172 -0.000244141 8 -0.000244141C12.4183 -0.000244141 16 3.58148 16 7.99976C16 12.418 12.4183 15.9998 8 15.9998C3.58172 15.9998 0 12.418 0 7.99976ZM7.5 8.99951V3.99999H8.5V8.99951H7.5ZM9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z" fill="currentColor"></path></svg>
+
+                            <div class="input-container">
+
+                                <input type="text" name="n" id='n' value="Ваше имя" autocomplete="x">
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <svg data-field-icon id='email' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35" viewBox="0 0 35 35">
+                                <defs>
+                                  <clipPath id="clip-Пользовательский_размер_1">
+                                    <rect width="35" height="35"/>
+                                  </clipPath>
+                                </defs>
+                                <g id="Пользовательский_размер_1" data-name="Пользовательский размер – 1" clip-path="url(#clip-Пользовательский_размер_1)">
+                                  <rect width="35" height="35" fill="none"/>
+                                  <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-0.891 0.157)">
+                                    <path id="Контур_3" data-name="Контур 3" d="M6.078,6H30.7a3.046,3.046,0,0,1,3.078,2.994V26.958A3.046,3.046,0,0,1,30.7,29.952H6.078A3.046,3.046,0,0,1,3,26.958V8.994A3.046,3.046,0,0,1,6.078,6Z" transform="translate(0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                                    <path id="Контур_4" data-name="Контур 4" d="M33.782,9,18.391,18.973,3,9" transform="translate(0 -0.151)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                                  </g>
+                                </g>
+                            </svg>
+                              
+                            <svg id="ee" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Warning Icon "><title>Warning Icon</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.999756C4.13401 0.999756 1 4.13376 1 7.99976C1 11.8657 4.13401 14.9998 8 14.9998C11.866 14.9998 15 11.8657 15 7.99976C15 4.13376 11.866 0.999756 8 0.999756ZM0 7.99976C0 3.58148 3.58172 -0.000244141 8 -0.000244141C12.4183 -0.000244141 16 3.58148 16 7.99976C16 12.418 12.4183 15.9998 8 15.9998C3.58172 15.9998 0 12.418 0 7.99976ZM7.5 8.99951V3.99999H8.5V8.99951H7.5ZM9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z" fill="currentColor"></path></svg>
+
+                            <div class="input-container">
+
+                                <input type="text" name="u" id="e" value="Электронная почта" autocomplete="x">
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <svg data-field-icon id='lock' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35" viewBox="0 0 35 35">
+                                <defs>
+                                  <clipPath id="clip-Пользовательский_размер_1">
+                                    <rect width="35" height="35"/>
+                                  </clipPath>
+                                </defs>
+                                <g id="Пользовательский_размер_1" data-name="Пользовательский размер – 1" clip-path="url(#clip-Пользовательский_размер_1)">
+                                  <rect width="35" height="35" fill="none"/>
+                                  <path id="Icon_ionic-ios-lock" data-name="Icon ionic-ios-lock" d="M30.072,15.369h-2v-3.89a8,8,0,1,0-15.992-.108v4h-2A3.341,3.341,0,0,0,6.75,18.7V34.693a3.341,3.341,0,0,0,3.332,3.332h19.99A3.341,3.341,0,0,0,33.4,34.693V18.7A3.341,3.341,0,0,0,30.072,15.369ZM21.243,25.764v5.731a1.194,1.194,0,0,1-1.108,1.2,1.167,1.167,0,0,1-1.224-1.166V25.764a2.665,2.665,0,1,1,2.332,0Zm4.5-10.395H14.413v-4a5.664,5.664,0,0,1,11.328,0Z" transform="translate(-2.577 -3.2)"/>
+                                </g>
+                            </svg>                              
+
+                            <svg id="pe" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Warning Icon "><title>Warning Icon</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.999756C4.13401 0.999756 1 4.13376 1 7.99976C1 11.8657 4.13401 14.9998 8 14.9998C11.866 14.9998 15 11.8657 15 7.99976C15 4.13376 11.866 0.999756 8 0.999756ZM0 7.99976C0 3.58148 3.58172 -0.000244141 8 -0.000244141C12.4183 -0.000244141 16 3.58148 16 7.99976C16 12.418 12.4183 15.9998 8 15.9998C3.58172 15.9998 0 12.418 0 7.99976ZM7.5 8.99951V3.99999H8.5V8.99951H7.5ZM9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z" fill="currentColor"></path></svg>
+
+                            <div class="input-container">
+
+                                <input name="p" id="p" value="Пароль" autocomplete="x">
+
+                            </div>
+
+                            <div class="show-password-btn">
+
+                                <svg id="shown" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C5.25 4.5 1.5 9.75 1.5 12s3.75 7.5 10.5 7.5 10.5-5.25 10.5-7.5S18.75 4.5 12 4.5zM5.552 15.103C4.282 13.966 3.5 12.583 3.5 12c0-.584.781-1.966 2.052-3.103C7.231 7.395 9.438 6.5 12 6.5c2.562 0 4.77.895 6.448 2.397 1.27 1.137 2.052 2.52 2.052 3.103 0 .584-.781 1.966-2.052 3.103C16.769 16.605 14.562 17.5 12 17.5c-2.562 0-4.77-.895-6.448-2.397zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm2-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" /></svg>
+                                <svg id="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path fill-rule="evenodd" clip-rule="evenodd" d="M20.707 20.707a1 1 0 0 0 0-1.414l-16-16a1 1 0 0 0-1.414 1.414L5.205 6.62C2.785 8.338 1.5 10.683 1.5 12c0 2.25 3.75 7.5 10.5 7.5 1.916 0 3.59-.423 5.006-1.08l2.287 2.287a1 1 0 0 0 1.414 0zm-5.228-3.814-1.774-1.774A4 4 0 0 1 8.38 9.794L6.644 8.058a9.332 9.332 0 0 0-1.09.84C4.28 10.034 3.5 11.417 3.5 12c0 .584.781 1.966 2.052 3.103C7.231 16.605 9.438 17.5 12 17.5a9.97 9.97 0 0 0 3.48-.607zm4.841-.815C21.751 14.61 22.5 13.006 22.5 12c0-2.25-3.75-7.5-10.5-7.5-1.043 0-2.015.125-2.912.346l1.721 1.72c.388-.043.785-.066 1.191-.066 2.562 0 4.77.895 6.448 2.397 1.27 1.137 2.052 2.52 2.052 3.103 0 .51-.596 1.63-1.595 2.663l1.415 1.415z" /></svg>
+
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                    <span class="error" id="symbols">Хотя бы 8 символов</span>
+                    <span class="error" id="number">Хотя бы одна цифра</span>
+    
+                    <div class="btns register">
+
+                        <button type="submit" class="btn" id="r" disabled>Зарегистрироваться</button>
+
+                        <a href="{% url 'user:login' %}" style="color: #1E2330;">
+
+                            <button type="button" class="btn">У меня есть аккаунт</button>
+
+                        </a>
+
+                    </div>
+    
+                </form>
+    
+            </div>
+
+        </div>
+        
+        {% else %}
+
+            <div class="main">
+            <div class="circle-animation"></div>
+            
+            <div class="wrapper register">
+
+                <a href="/">
+
+                    <div class="brand">
+    
+                        <div class="wrapper">
+    
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19.394" height="28.21" viewBox="0 0 19.394 28.21">
+                                <path id="Icon_awesome-lightbulb" data-name="Icon awesome-lightbulb" d="M5.293,25.033a1.764,1.764,0,0,0,.3.975l.942,1.415A1.763,1.763,0,0,0,8,28.21h3.4a1.763,1.763,0,0,0,1.468-.787l.942-1.415a1.762,1.762,0,0,0,.3-.975l0-2.113H5.29l0,2.113ZM0,9.7a9.643,9.643,0,0,0,2.4,6.379,15.834,15.834,0,0,1,2.877,5.039c0,.014.006.043.006.043h8.829c0-.014,0-.028.006-.043a15.834,15.834,0,0,1,2.877-5.039A9.7,9.7,0,1,0,0,9.7ZM9.7,5.289A4.413,4.413,0,0,0,5.289,9.7a.882.882,0,0,1-1.763,0A6.178,6.178,0,0,1,9.7,3.526a.882.882,0,0,1,0,1.763Z" transform="translate(0 0)"></path>
+                            </svg>
+    
+                        </div>
+        
+                    </div>
+
+                </a>
+    
+                <h1>Добро пожаловать в Блокнотик!</h1>
+
+                
+                <form method="POST">
+                    
+                    {% csrf_token %}
+                    
+                    <div class="unique">
+
+                        <span>Эта почта уже используется</span>
+
+                    </div>
+    
+                    <div class="fields">
+    
+                        <div>
+
+                            <svg data-field-icon xmlns="http://www.w3.org/2000/svg" width="23.339" height="23.34" viewBox="0 0 23.339 23.34">
+                                <path id="Icon_ionic-ios-person" data-name="Icon ionic-ios-person" d="M27.828,27.251c-.438-1.933-2.936-2.875-3.8-3.179a28.323,28.323,0,0,0-3.167-.608,3.218,3.218,0,0,1-1.465-.675,12.8,12.8,0,0,1-.1-3,9.016,9.016,0,0,0,.693-1.319,17.013,17.013,0,0,0,.511-2.3s.5,0,.675-.875a8.612,8.612,0,0,0,.45-2.036c-.036-.7-.419-.681-.419-.681a10.657,10.657,0,0,0,.413-3.118c.055-2.5-1.9-4.96-5.446-4.96-3.592,0-5.507,2.462-5.452,4.96a11.116,11.116,0,0,0,.407,3.118s-.383-.018-.419.681a8.612,8.612,0,0,0,.45,2.036c.17.875.675.875.675.875a17.013,17.013,0,0,0,.511,2.3,9.016,9.016,0,0,0,.693,1.319,12.8,12.8,0,0,1-.1,3,3.218,3.218,0,0,1-1.465.675,28.323,28.323,0,0,0-3.167.608c-.863.3-3.361,1.246-3.8,3.179a.486.486,0,0,0,.48.59H27.354A.485.485,0,0,0,27.828,27.251Z" transform="translate(-4.501 -4.5)"/>
+                            </svg>
+
+                            <svg id="ne" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Warning Icon "><title>Warning Icon</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.999756C4.13401 0.999756 1 4.13376 1 7.99976C1 11.8657 4.13401 14.9998 8 14.9998C11.866 14.9998 15 11.8657 15 7.99976C15 4.13376 11.866 0.999756 8 0.999756ZM0 7.99976C0 3.58148 3.58172 -0.000244141 8 -0.000244141C12.4183 -0.000244141 16 3.58148 16 7.99976C16 12.418 12.4183 15.9998 8 15.9998C3.58172 15.9998 0 12.418 0 7.99976ZM7.5 8.99951V3.99999H8.5V8.99951H7.5ZM9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z" fill="currentColor"></path></svg>
+
+                            <input type="text" name="n" id='n' value="Ваше имя" autocomplete="x">
+
+                        </div>
+
+                        <div>
+
+                            <svg data-field-icon id='email' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35" viewBox="0 0 35 35">
+                                <defs>
+                                  <clipPath id="clip-Пользовательский_размер_1">
+                                    <rect width="35" height="35"/>
+                                  </clipPath>
+                                </defs>
+                                <g id="Пользовательский_размер_1" data-name="Пользовательский размер – 1" clip-path="url(#clip-Пользовательский_размер_1)">
+                                  <rect width="35" height="35" fill="none"/>
+                                  <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-0.891 0.157)">
+                                    <path id="Контур_3" data-name="Контур 3" d="M6.078,6H30.7a3.046,3.046,0,0,1,3.078,2.994V26.958A3.046,3.046,0,0,1,30.7,29.952H6.078A3.046,3.046,0,0,1,3,26.958V8.994A3.046,3.046,0,0,1,6.078,6Z" transform="translate(0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                                    <path id="Контур_4" data-name="Контур 4" d="M33.782,9,18.391,18.973,3,9" transform="translate(0 -0.151)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                                  </g>
+                                </g>
+                            </svg>
+                              
+                            <svg id="ee" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Warning Icon "><title>Warning Icon</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.999756C4.13401 0.999756 1 4.13376 1 7.99976C1 11.8657 4.13401 14.9998 8 14.9998C11.866 14.9998 15 11.8657 15 7.99976C15 4.13376 11.866 0.999756 8 0.999756ZM0 7.99976C0 3.58148 3.58172 -0.000244141 8 -0.000244141C12.4183 -0.000244141 16 3.58148 16 7.99976C16 12.418 12.4183 15.9998 8 15.9998C3.58172 15.9998 0 12.418 0 7.99976ZM7.5 8.99951V3.99999H8.5V8.99951H7.5ZM9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z" fill="currentColor"></path></svg>
+
+                            <input type="text" name="u" id="e" value="Электронная почта" autocomplete="x">
+
+                        </div>
+
+                        <div>
+
+                            <svg data-field-icon id='lock' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35" viewBox="0 0 35 35">
+                                <defs>
+                                  <clipPath id="clip-Пользовательский_размер_1">
+                                    <rect width="35" height="35"/>
+                                  </clipPath>
+                                </defs>
+                                <g id="Пользовательский_размер_1" data-name="Пользовательский размер – 1" clip-path="url(#clip-Пользовательский_размер_1)">
+                                  <rect width="35" height="35" fill="none"/>
+                                  <path id="Icon_ionic-ios-lock" data-name="Icon ionic-ios-lock" d="M30.072,15.369h-2v-3.89a8,8,0,1,0-15.992-.108v4h-2A3.341,3.341,0,0,0,6.75,18.7V34.693a3.341,3.341,0,0,0,3.332,3.332h19.99A3.341,3.341,0,0,0,33.4,34.693V18.7A3.341,3.341,0,0,0,30.072,15.369ZM21.243,25.764v5.731a1.194,1.194,0,0,1-1.108,1.2,1.167,1.167,0,0,1-1.224-1.166V25.764a2.665,2.665,0,1,1,2.332,0Zm4.5-10.395H14.413v-4a5.664,5.664,0,0,1,11.328,0Z" transform="translate(-2.577 -3.2)"/>
+                                </g>
+                            </svg>                              
+
+                            <svg id="pe" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Warning Icon "><title>Warning Icon</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0.999756C4.13401 0.999756 1 4.13376 1 7.99976C1 11.8657 4.13401 14.9998 8 14.9998C11.866 14.9998 15 11.8657 15 7.99976C15 4.13376 11.866 0.999756 8 0.999756ZM0 7.99976C0 3.58148 3.58172 -0.000244141 8 -0.000244141C12.4183 -0.000244141 16 3.58148 16 7.99976C16 12.418 12.4183 15.9998 8 15.9998C3.58172 15.9998 0 12.418 0 7.99976ZM7.5 8.99951V3.99999H8.5V8.99951H7.5ZM9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z" fill="currentColor"></path></svg>
+
+                            <input name="p" id="p" value="Пароль" autocomplete="x">
+
+                            <div class="show-password-btn">
+
+                                <svg id="shown" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.5C5.25 4.5 1.5 9.75 1.5 12s3.75 7.5 10.5 7.5 10.5-5.25 10.5-7.5S18.75 4.5 12 4.5zM5.552 15.103C4.282 13.966 3.5 12.583 3.5 12c0-.584.781-1.966 2.052-3.103C7.231 7.395 9.438 6.5 12 6.5c2.562 0 4.77.895 6.448 2.397 1.27 1.137 2.052 2.52 2.052 3.103 0 .584-.781 1.966-2.052 3.103C16.769 16.605 14.562 17.5 12 17.5c-2.562 0-4.77-.895-6.448-2.397zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm2-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" /></svg>
+                                <svg id="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path fill-rule="evenodd" clip-rule="evenodd" d="M20.707 20.707a1 1 0 0 0 0-1.414l-16-16a1 1 0 0 0-1.414 1.414L5.205 6.62C2.785 8.338 1.5 10.683 1.5 12c0 2.25 3.75 7.5 10.5 7.5 1.916 0 3.59-.423 5.006-1.08l2.287 2.287a1 1 0 0 0 1.414 0zm-5.228-3.814-1.774-1.774A4 4 0 0 1 8.38 9.794L6.644 8.058a9.332 9.332 0 0 0-1.09.84C4.28 10.034 3.5 11.417 3.5 12c0 .584.781 1.966 2.052 3.103C7.231 16.605 9.438 17.5 12 17.5a9.97 9.97 0 0 0 3.48-.607zm4.841-.815C21.751 14.61 22.5 13.006 22.5 12c0-2.25-3.75-7.5-10.5-7.5-1.043 0-2.015.125-2.912.346l1.721 1.72c.388-.043.785-.066 1.191-.066 2.562 0 4.77.895 6.448 2.397 1.27 1.137 2.052 2.52 2.052 3.103 0 .51-.596 1.63-1.595 2.663l1.415 1.415z" /></svg>
+
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                    <span class="error" id="symbols">Хотя бы 8 символов</span>
+                    <span class="error" id="number">Хотя бы одна цифра</span>
+    
+                    <div class="btns register">
+
+                        <button type="submit" class="btn" id="r" disabled>Зарегистрироваться</button>
+
+                        <a href="{% url 'user:login' %}" style="color: #1E2330;">
+
+                            <button type="button" class="btn">У меня есть аккаунт</button>
+
+                        </a>
+
+                    </div>
+    
+                </form>
+    
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </body>
+
+    <style>
+
+        @font-face {
+            font-family: Comfortaa;
+            src: url("{% static 'fonts/Comfortaa.ttf' %}");
+        }
+
+        body {
+
+            font-family: Comfortaa;
+
+        }
+
+        button {
+
+            font-family: Comfortaa;
+            cursor: pointer;
+            border: none;
+            border-radius: 100px;
+
+        }
+
+        input {
+
+            font-family: Comfortaa;
+
+        }
+
+    </style>
+
+    <!-- Anal -->        
+    <script>
+
+        $(window).on('load', function() {
+
+            
+            $.ajax({ 
+                
+                type: 'POST',
+
+                url: "{% url 'analytics:funnel' %}",
+                
+                data: {
+                    
+                    'csrfmiddlewaretoken': "{{ csrf_token }}",
+                    
+                }
+                
+            });
+
+        });
+
+    </script>
+
+    <script>
+
+        $('[data-field-icon]').click(function() {
+
+            $(this).siblings('input').focus();
+
+        });
+
+    </script>
+
+    <script>
+
+        function delay(callback, ms) {
+
+            var timer = 0;
+
+            return function() {
+
+                var context = this, args = arguments;
+                clearTimeout(timer);
+                
+                timer = setTimeout(function () {
+
+                    callback.apply(context, args);
+
+                }, ms || 0);
+            };
+            
+        }
+
+        function hasNumber(myString) {
+
+            return /\d/.test(myString);
+        
+        }
+
+        var n, e, p;
+
+        function v() {
+
+            if (n && e && p) {
+
+                $('#r').prop('disabled', false);
+                $('#r').css({
+                    
+                    'background-color': '#8129D9',
+                    'box-shadow': 'inset 5px 5px 10px #6e23b8, inset -5px -5px 10px #942ffa',
+                    'color': '#fff'
+                
+                });
+
+            } else {
+
+                $('#r').prop('disabled', true);
+
+            }
+
+        }
+        
+        $('button').click(function() {
+
+            btn = $(this).addClass('in');
+
+            setTimeout(function() {
+
+                btn.removeClass('in');
+
+            }, 250);
+            
+        })
+
+        document.getElementById('n').addEventListener('input', function() {
+
+            $('#ne').css('opacity', 0);
+
+            $('#r').prop('disabled', true);
+
+
+        });
+
+        document.getElementById('n').addEventListener('input', delay(function() {
+
+            if (!$('#n').val()) {
+
+                $('#ne').css('opacity', 1);
+                n = false;
+
+            } else {
+
+                n = true;
+
+            }
+
+            v();
+
+        }, 500));
+
+        function validateEmail(e) {
+
+            var re = /\S+@\S+\.\S+/;
+            return re.test(e);
+
+        }
+
+        $('input').focus(function() {
+
+            field = $(this);
+
+            field.css('color', '#1E2330');
+
+            fieldName = field.val();
+            
+            if (fieldName == 'Электронная почта' || fieldName == 'Ваше имя' || fieldName == 'Пароль') {
+
+                field.val('');
+
+            }
+
+            if (fieldName == 'Пароль') {
+
+                field.attr('type', 'password');
+
+            }
+
+        });
+
+        $('input').focusout(function() {
+
+            field = $(this);
+
+            fieldID = field.attr('id');
+            fieldValue = field.val();
+
+            if (fieldValue == '') {
+
+                field.css('color', '#6e7267');
+
+                if (fieldID == 'n') {
+
+                    field.val('Ваше имя');
+
+                } else if (fieldID == 'e') {
+
+                    field.val('Электронная почта');
+
+                } else {
+
+                    field.attr('type', 'text');
+                    field.val('Пароль');
+
+                }
+
+            }
+
+        });
+
+        /* Email */
+
+        document.getElementById('e').addEventListener('input', function() {
+
+            $('.unique').css('opacity', 0);
+            $('#ee').css('opacity', 0);
+
+            $('#r').prop('disabled', true);
+
+        });
+
+        document.getElementById('e').addEventListener('input', delay(function() {
+
+            if (validateEmail($('#e').val())) {
+
+               $.ajax({
+
+                    type: 'POST',
+
+                    url: "{% url 'user:ce' %}",
+
+                    data: {
+
+                        'csrfmiddlewaretoken': '{{csrf_token}}',
+                        'e': $('#e').val(),
+
+                    },
+
+                    success: function(response, status, XHR) {
+
+                        var u = response['u'];
+
+                        if (u == 'n') {
+
+                            $('.unique').css('opacity', 1);
+                            $('#ee').css('opacity', 1);
+                            e = false;
+
+                            v();
+                            
+                        } else {
+                            
+                            e = true;
+
+                            v();
+
+                        }
+
+                    }
+
+               });
+
+            } else {
+
+                $('#ee').css('opacity', 1);
+                e = false;
+
+            }
+
+            v();
+
+        }, 500));
+
+        /* Password */
+
+        document.getElementById('p').addEventListener('input', delay(function() {
+
+            $('.error').css('opacity', 0);
+            $('#pe').css('opacity', 0);
+
+            p = $(this).val();
+
+            if (p.length > 7) {
+
+                if(hasNumber(p)) {
+
+                    $('#number').css('opacity', 0);
+                    p = true;
+
+                } else {
+
+                    $('#number').css('opacity', 1);
+                    $('#pe').css('opacity', 1);
+                    p = false;
+
+                }
+
+            } else {
+
+                $('#symbols').css('opacity', 1);
+                $('#pe').css('opacity', 1);
+                p = false;
+
+            }
+
+            v();
+
+        }, 500));
+
+        /* Password Shown/Hidden */
+
+        $('#shown').click(function() {
+
+            $(this).hide();
+            $('#hidden').show();
+
+            $('#p').attr('type', 'text');
+
+        });
+
+        $('#hidden').click(function() {
+
+            $(this).hide();
+            $('#shown').show();
+
+            $('#p').attr('type', 'password');
+
+        });
+
+    </script>
+
+</html>

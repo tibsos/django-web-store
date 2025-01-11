@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Мой профиль</h1>
+
+    <div class="profile-info">
+        <p><strong>Имя:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Дата регистрации:</strong> {{ user.date_joined }}</p>
+    </div>
+
+    <div class="profile-actions">
+        <a href="{% url 'edit_profile' %}" class="btn">Редактировать профиль</a>
+        <a href="{% url 'change_password' %}" class="btn">Изменить пароль</a>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    /* Стили для профиля */
+    .profile-info p {
+        font-size: 18px;
+        margin: 10px 0;
+    }
+
+    .profile-actions {
+        margin-top: 20px;
+    }
+
+    /* Стили для кнопок */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>

@@ -1,0 +1,395 @@
+$light-text: #1E2330;
+
+body, html {
+
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    color: $light-text;
+
+}
+
+body {
+
+    background: #fff;
+
+    overflow: none;
+
+}
+
+button {
+
+    outline: none;
+
+}
+
+::-webkit-scrollbar {
+    
+    width: 10px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: $light-text;
+    border-radius: 50px;
+
+}
+
+svg {
+
+    fill: $light-text;
+
+}
+
+#Icon_feather-mail {
+
+    path {
+
+        stroke: $light-text;
+
+    }
+
+}
+
+button:disabled {
+
+    opacity: 0.8;
+
+}
+
+
+.main {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .wrapper {
+
+        position: relative;
+
+        width: 340px;
+        height: 500px;
+
+        background: #fff;
+
+        border-radius: 20px;
+
+        background-color: #fff;
+
+        box-shadow: 1px 1px 8px #a0a0a0,
+            -1px -1px 8px #ffffff;
+
+        .brand {
+
+            position: relative;
+            top: 20px;
+
+            width: 100%;
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            .wrapper {
+
+                width: 79px;
+                height: 79px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 1px 0 0 1px;
+
+                border-radius: 50px;
+
+                box-shadow: 1px 1px 8px #a0a0a0,
+                    -1px -1px 8px #ffffff;
+
+                cursor: pointer;
+
+                svg {
+
+                    transform: scale(2);
+    
+                }
+
+            }
+
+        }
+
+        h1 {
+
+            position: relative;
+            top: 46px;
+
+            width: 340px;
+
+            text-align: center;
+
+            font-weight: normal;
+            font-size: 25px;
+            margin: 0;
+
+        }
+
+        form {
+
+            position: relative;
+            top: 70px;
+
+            .fields {
+
+                width: 100%;
+
+                div {
+
+                    position: relative;
+                    left: 4%;
+
+                    width: 80%;
+
+                    svg:first-child {
+
+                        position: absolute;
+                        left: 15px;
+                        top: 16px;
+
+                        cursor: pointer;
+
+                    }
+
+                    svg:nth-child(2) {
+
+                        position: absolute;
+                        right: -25px;
+                        top: 19px;
+
+                        opacity: 0;
+
+                    }
+
+                    #email {
+
+                        top: 10px;
+                        left: 10px;
+
+                        transform: scale(0.75);
+
+                    }
+
+                    #lock {
+
+                        top: 9px;
+                        left: 10px;
+
+                        transform: scale(0.75);
+
+                    }
+
+                    .input-container {
+
+                        position: relative;
+
+                        left: 0px;
+
+                        width: 310px;
+                        height: 52px;
+
+                        margin-bottom: 15px;
+
+                        border-radius: 50px;
+
+                        box-shadow: inset 1px 1px 8px #a0a0a0,
+                            inset -1px -1px 8px #ffffff;
+
+                        input {
+            
+                            width: 220px;
+                            height: 100%;
+                
+                            padding: 3px 20px 0 50px;
+    
+                            color: #6e7267;
+                            
+                            background: none;
+                            
+                            border: none;
+                            border-radius: 50px;    
+                            
+                          
+                            font-size: 18px; 
+                
+                        }
+
+                    }
+            
+                    input:focus {
+            
+                        outline: none;
+            
+                    }
+
+                    .show-password-btn {
+
+                        position: absolute;
+                        left: 240px;
+                        top: 0px;
+
+                        #hidden {
+
+                            position: absolute;
+                            top: 16px;
+                            right: 178px;
+
+                            opacity: 1;
+                            display: none;
+
+                            cursor: pointer;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .error {
+
+                position: absolute;
+                top: 195px;
+                left: 40px;
+
+                color: red;
+
+                opacity: 0;
+
+                transform: scale(1.2);
+
+            }
+
+            .error.reset {
+
+                top: 60px;
+
+            }
+
+            .unique {
+
+                position: absolute;
+                left: 20px;
+                top: -21px;
+
+                opacity: 0;
+
+                color: red;
+
+            }
+
+            .e {
+
+                display: block;
+                margin: 0 0 10px 20px;
+
+                color: red;
+
+            }
+
+            a {
+
+                position: relative;
+                top: 5px;
+                left: 10%;
+
+                text-decoration: none;
+                color: $light-text;
+
+            }
+
+            a:hover {
+
+                color: red;
+
+            }
+
+            .btns {
+
+                position: relative;
+                top: 40px;
+
+                a {
+
+                    left: 0;
+                    color: $light-text;
+
+                }
+
+                button {
+
+                    position: relative;
+                    left: 5%;
+
+                    width: 90%;
+                    height: 50px;
+
+                    padding-top: 4px;
+                    margin-bottom: 15px;
+
+                    background: none;
+                    color: $light-text;
+
+                    box-shadow:  1px 1px 10px #a0a0a0,
+                        -1px -1px 10px #ffffff;
+
+                    font-size: 18px;
+
+                }
+
+                button.in {
+
+                    box-shadow: inset 1px 1px 10px #a0a0a0,
+                        inset -1px -1px 10px #ffffff;
+
+                }
+
+            }
+
+        }
+
+    
+    }
+
+}
+
+
+.wrapper.register {
+
+    height: 560px;
+
+    .btns.register {
+
+        top: 15px;
+
+    }
+
+}

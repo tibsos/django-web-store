@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="product-detail">
+        <h1>{{ product.name }}</h1>
+        <div class="product-images">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="main-image">
+            {% for image in product.images.all %}
+                <img src="{{ image.url }}" alt="Доп. изображение {{ product.name }}" class="additional-image">
+            {% endfor %}
+        </div>
+
+        <div class="product-info">
+            <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+            <p><strong>Гарантия:</strong> {{ product.warranty_period }} месяцев</p>
+            <p><strong>Артикул:</strong> {{ product.sku }}</p>
+            <p><strong>Размеры и вес:</strong> {{ product.dimensions }}</p>
+        </div>
+
+        <div class="product-description">
+            <h2>Описание</h2>
+            <p>{{ product.description }}</p>
+        </div>
+
+        <div class="price-history">
+            <h3>История цен</h3>
+            <ul>
+                {% for record in price_history %}
+                    <li>{{ record.date }}: {{ record.price }} руб.</li>
+                {% empty %}
+                    <p>Нет данных о ценах.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="reviews">
+            <h3>Отзывы</h3>
+            {% for review in reviews %}
+                <div class="review">
+                    <p><strong>{{ review.user.username }}</strong> ({{ review.rating }} / 5)</p>
+                    <p>{{ review.comment }}</p>
+                </div>
+            {% empty %}
+                <p>Нет отзывов.</p>
+            {% endfor %}
+        </div>
+        
+        <!-- Кнопка добавления в корзину (если нужно) -->
+        <button class="add-to-cart">Добавить в корзину</button>
+    </div>
+</div>
+{% endblock %}

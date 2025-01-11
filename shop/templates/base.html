@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин</title>
+    <style>
+        /* Стили для общей страницы */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            max-width: 150px;
+        }
+
+        .menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-items {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            width: 200px;
+            top: 100%;
+            left: 0;
+            border-radius: 5px;
+        }
+
+        .menu-items.active {
+            display: block;
+        }
+
+        .menu-items ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .menu-items li {
+            padding: 10px;
+        }
+
+        .menu-items li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .search-cart {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .search-cart form {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .search-cart input {
+            padding: 5px;
+        }
+
+        .cart, .favorites, .profile {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
+        .cart a, .favorites a, .profile a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Общий стиль для содержимого */
+        .container {
+            padding: 20px;
+        }
+
+        .cart-items table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .cart-items table th, .cart-items table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .cart-actions a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .cart-actions a:hover {
+            background-color: #218838;
+        }
+
+        .continue-shopping {
+            background-color: #007bff;
+        }
+
+        .continue-shopping:hover {
+            background-color: #0056b3;
+        }
+
+        .checkout {
+            background-color: #ffc107;
+        }
+
+        .checkout:hover {
+            background-color: #e0a800;
+        }
+
+        .product-image {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'product_list' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Логотип">
+            </a>
+        </div>
+        <div class="menu">
+            <button class="burger-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="menu-items" id="menu-items">
+                <ul>
+                    <li><a href="{% url 'product_list' %}">Главная</a></li>
+                    {% for category in categories %}
+                    <li><a href="{% url 'category_products' slug=category.slug %}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="search-cart">
+            <form method="GET" action="{% url 'product_list' %}">
+                <input type="text" name="q" placeholder="Поиск товаров" value="{{ request.GET.q }}">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="cart">
+                <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i> Корзина</a>
+            </div>
+            <div class="favorites">
+                <a href="{% url 'favorites' %}"><i class="fas fa-heart"></i> Избранное</a>
+            </div>
+            <div class="profile">
+                <a href="{% url 'profile' %}"><i class="fas fa-user"></i> Профиль</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Контент страницы -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu-items");
+            menu.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
