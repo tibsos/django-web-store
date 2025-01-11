@@ -1,4 +1,3 @@
-# shop/urls.py
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
@@ -30,4 +29,7 @@ urlpatterns = [
     path('profile/edit/', views.edit_profile, name='edit_profile'),  # Добавляем путь для редактирования профиля
 
     path('profile/change-password/', auth_views.PasswordChangeView.as_view(), name='change_password'),
+
+    # URL для добавления товара в корзину, используя UUID
+    path('cart/add/<uuid:product_id>/', views.add_to_cart, name='add_to_cart'),  # добавление UUID
 ]

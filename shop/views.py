@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
 from .models import Category, Product, Cart, Favorite, CartItem
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 # Получаем категории для отображения в боковой панели
 def get_categories():
@@ -17,11 +18,16 @@ def product_list(request):
     # Поиск товаров по запросу
     search_query = request.GET.get('q', '')
     if search_query:
-        products = products.filter(name__icontains=search_query)
+        products = products.filter(
+            Q(name__icontains=search_query) |  # Поиск по названию
+            Q(sku__icontains=search_query) |  # Поиск по артикулу
+            Q(description__icontains=search_query)  # Поиск по описанию
+        )
     
     return render(request, 'product_list.html', {
         'products': products,
         'categories': categories,
+        'search_query': search_query,  # Передаем запрос для отображения в поле ввода
     })
 
 # Страница с товарами категории и подкатегории
@@ -116,3 +122,17 @@ def edit_profile(request):
         form = UserChangeForm(instance=request.user)
     
     return render(request, 'edit_profile.html', {'form': form})
+
+# Добавить товар в корзину
+@login_required
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    
+    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+    if not item_created:
+        cart_item.quantity += 1
+        cart_item.save()
+    
+    messages.success(request, f"Товар '{product.name}' добавлен в корзину!")
+    return redirect('cart')

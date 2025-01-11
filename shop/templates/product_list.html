@@ -1,11 +1,130 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    /* Стилизация страницы продуктов */
+    .container {
+        margin: 0 auto;
+        padding: 20px;
+        max-width: 1200px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .categories {
+        margin-bottom: 30px;
+    }
+
+    .categories h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .categories ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .categories li {
+        margin: 5px 0;
+    }
+
+    .categories a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1.2em;
+    }
+
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .product-item {
+        width: 220px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .product-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .product-item h3 {
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+
+    .product-item p {
+        font-size: 1em;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    .product-item button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-top: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    .product-item button:hover {
+        background-color: #0056b3;
+    }
+
+    .search-form {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .search-form input {
+        width: 70%;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .search-form button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .search-form button:hover {
+        background-color: #218838;
+    }
+</style>
+
 <div class="container">
     <h1>Товары</h1>
 
     <!-- Форма поиска товаров -->
-    <form method="GET" action="{% url 'product_list' %}">
+    <form method="GET" action="{% url 'product_list' %}" class="search-form">
         <input type="text" name="q" placeholder="Поиск товаров..." value="{{ request.GET.q }}">
         <button type="submit"><i class="fas fa-search"></i> Найти</button>
     </form>
@@ -31,6 +150,12 @@
                         <h3>{{ product.name }}</h3>
                         <p>{{ product.price }} руб.</p>
                     </a>
+
+                    <!-- Форма для добавления товара в корзину -->
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Добавить в корзину</button>
+                    </form>
                 </li>
             {% empty %}
                 <p>Товары не найдены.</p>
