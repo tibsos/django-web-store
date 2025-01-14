@@ -11,25 +11,21 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* Цвет фона страницы */
+            background-color: #f4f4f4;
         }
 
         header {
-            background-color: #d4c44c; /* Цвет панели */
-            color: #fff;
+            background-color: #d4c44c;
+            color: #d4c44c;
             padding: 15px 0;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid #8b572a; /* Граница панели */
-            overflow-y: auto; /* Прокрутка при необходимости */
         }
 
-        .logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .logo img {
+            max-width: 150px;
         }
 
         .menu {
@@ -61,9 +57,6 @@
 
         .menu-items li {
             padding: 10px;
-            position: relative; /* Позволяет выходить за границы */
-            white-space: nowrap; /* Запрещает перенос текста */
-            overflow: visible; /* Позволяет li выходить за пределы панели */
         }
 
         .menu-items li a {
@@ -89,35 +82,15 @@
         .cart, .favorites, .profile {
             display: inline-block;
             margin-left: 10px;
+            font-size: 20px;
         }
 
-        .cart img, .favorites img, .profile img {
-            width: 30px;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s;
+        .cart a, .favorites a, .profile a {
+            color: #fff;
+            text-decoration: none;
         }
 
-        .cart img:hover, .favorites img:hover, .profile img:hover {
-            transform: scale(1.1); /* Увеличение при наведении */
-        }
-
-        /* Кнопки */
-        button {
-            background-color: #007bff; /* Цвет фона */
-            color: white; /* Белый текст */
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        button:hover {
-            color: #000; /* Текст становится чуть темнее */
-        }
-
-        /* Контейнер */
+        /* Общий стиль для содержимого */
         .container {
             padding: 20px;
         }
@@ -174,44 +147,20 @@
             max-width: 50px;
             margin-right: 10px;
         }
-
-        /* Адаптивное масштабирование */
-        @media (max-width: 768px) {
-            body {
-                font-size: 14px; /* Уменьшаем общий размер текста */
-            }
-            .menu-items {
-                width: 150px; /* Уменьшаем ширину выпадающего меню */
-            }
-            .logo svg {
-                width: 100px; /* Уменьшаем логотип */
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 12px; /* Ещё меньше текст */
-            }
-            .cart img, .favorites img, .profile img {
-                width: 25px; /* Уменьшаем значки */
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Навигационная панель -->
     <header>
         <div class="logo">
-            <!-- Логотип -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" style="width: 150px; height: auto;">
-                <rect width="200" height="60" fill="#0056b3" rx="10" />
-                <text x="100" y="35" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#fff">
-                    Paradize.net
-                </text>
-            </svg>
+            <a href="{% url 'product_list' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Логотип">
+            </a>
         </div>
         <div class="menu">
             <button class="burger-menu" onclick="toggleMenu()">...</button>
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="menu-items" id="menu-items">
                 <ul>
                     <li><a href="{% url 'product_list' %}">Главная</a></li>
@@ -227,19 +176,13 @@
                 <button type="submit"><i class="fas fa-search"></i>Поиск</button>
             </form>
             <div class="cart">
-                <a href="{% url 'cart' %}">
-                    <img src="{% static 'images/cart.png' %}" alt="Корзина">
-                </a>
+                <a href="{% url 'cart' %}"><i class="fas fa-shopping-cart"></i> Корзина</a>
             </div>
             <div class="favorites">
-                <a href="{% url 'favorites' %}">
-                    <img src="{% static 'images/favorites.png' %}" alt="Избранное">
-                </a>
+                <a href="{% url 'favorites' %}"><i class="fas fa-heart"></i> Избранное</a>
             </div>
             <div class="profile">
-                <a href="{% url 'profile' %}">
-                    <img src="{% static 'images/profile.png' %}" alt="Профиль">
-                </a>
+                <a href="{% url 'profile' %}"><i class="fas fa-user"></i> Профиль</a>
             </div>
         </div>
     </header>
@@ -258,3 +201,6 @@
     </script>
 </body>
 </html>
+
+
+старая версия скрипта14.01.25 21:30
