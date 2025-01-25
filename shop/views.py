@@ -33,10 +33,24 @@ def product_list(request):
     })
 
 # Страница с товарами категории и подкатегории
-def category_products(request, slug):
+def category_products(request, slug=None):
+    # Получаем все категории
     categories = get_categories()
-    category = get_object_or_404(Category, slug=slug)
-    products = Product.objects.filter(category=category)
+    
+    # Если slug передан, находим категорию по slug, иначе используем дефолтное значение
+    if slug:
+        category = get_object_or_404(Category, slug=slug)
+        products = Product.objects.filter(category=category)
+    else:
+        category = None
+        products = Product.objects.all()  # Получаем все продукты, если категория не выбрана
+
+    # Фильтрация по выбранной категории из GET-запроса
+    selected_category = request.GET.get('category')
+    if selected_category:
+        category = get_object_or_404(Category, slug=selected_category)
+        products = products.filter(category=category)
+
     return render(request, 'category_products.html', {
         'category': category,
         'products': products,

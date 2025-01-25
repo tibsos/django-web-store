@@ -37,4 +37,8 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     # Страница подтверждения заказа (если нужно)
     path('order/complete/', views.order_complete, name='order_complete'),
+
+    path('category_products/', views.category_products, name='category_products'),
+
+    path('category_products/<slug:slug>/', views.category_products, name='category_products'),
 ]
