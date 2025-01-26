@@ -23,7 +23,6 @@
             top: 0;
             z-index: 100;
             border-bottom: 2px solid #8b572a; /* Граница панели */
-            overflow-y: auto; /* Прокрутка при необходимости */
         }
 
         .logo {
@@ -61,9 +60,10 @@
 
         .menu-items li {
             padding: 10px;
-            position: relative; /* Позволяет выходить за границы */
+            position: relative; /* Позволяет управлять z-index */
             white-space: nowrap; /* Запрещает перенос текста */
             overflow: visible; /* Позволяет li выходить за пределы панели */
+            z-index: 9999; /* Устанавливает высокий приоритет на слои */
         }
 
         .menu-items li a {

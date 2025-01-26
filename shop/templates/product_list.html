@@ -39,13 +39,12 @@
     }
 
     .products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        display: grid; /* Используем сетку */
+        grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+        gap: 20px; /* Расстояние между элементами */
     }
 
     .product-item {
-        width: 220px;
         border: 1px solid #ddd;
         padding: 15px;
         border-radius: 8px;
@@ -141,10 +140,9 @@
     </div>
 
     <div class="products">
-        <h2>Все товары</h2>
-        <ul>
+        {% if products %}
             {% for product in products %}
-                <li class="product-item">
+                <div class="product-item">
                     <a href="{% url 'product_detail' slug=product.slug %}">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
                         <h3>{{ product.name }}</h3>
@@ -156,12 +154,12 @@
                         {% csrf_token %}
                         <button type="submit">Добавить в корзину</button>
                     </form>
-                    <div class="cart-message" id="cart-message-{{ product.id }}"></div> <!-- Место для сообщения -->
-                </li>
-            {% empty %}
-                <p>Товары не найдены.</p>
+                    <div class="cart-message" id="cart-message-{{ product.id }}"></div> <!-- Сообщение -->
+                </div>
             {% endfor %}
-        </ul>
+        {% else %}
+            <p>Товары не найдены.</p>
+        {% endif %}
     </div>
 </div>
 
@@ -177,7 +175,6 @@
                 const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
                 const cartMessage = document.getElementById('cart-message-' + productId);
                 
-                // Отправляем запрос на добавление товара в корзину через fetch
                 fetch(`/cart/add/${productId}/`, {
                     method: 'POST',
                     headers: {
@@ -189,10 +186,10 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        cartMessage.innerHTML = '<p>Ошибка при добавлении товара в корзину</p>';
+                        cartMessage.innerHTML = '<p>Товар добавлен в корзину!</p>';
                         cartMessage.style.color = 'green';
                     } else {
-                        cartMessage.innerHTML = '<p>Ошибка при добавлении товара в корзину.</p>';
+                        cartMessage.innerHTML = '<p>Ошибка при добавлении товара.</p>';
                         cartMessage.style.color = 'red';
                     }
                 })
