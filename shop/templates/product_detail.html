@@ -36,14 +36,41 @@
 
         <div class="reviews">
             <h3>Отзывы</h3>
+            
+            {% if reviews %}
+                <p><strong>Средний рейтинг:</strong> {{ average_rating|floatformat:1 }} / 5</p>
+            {% endif %}
+
             {% for review in reviews %}
                 <div class="review">
-                    <p><strong>{{ review.user.username }}</strong> ({{ review.rating }} / 5)</p>
+                    <p><strong>{{ review.user.username }}</strong> ({{ review.rating }} / 5 ⭐)</p>
                     <p>{{ review.comment }}</p>
                 </div>
             {% empty %}
                 <p>Нет отзывов.</p>
             {% endfor %}
+
+            {% if user.is_authenticated %}
+            <h4>Оставить отзыв</h4>
+            <form method="post">
+                {% csrf_token %}
+                <label for="rating">Рейтинг (1-5):</label>
+                <select name="rating" id="rating" required>
+                    <option value="5">⭐ 5</option>
+                    <option value="4">⭐ 4</option>
+                    <option value="3">⭐ 3</option>
+                    <option value="2">⭐ 2</option>
+                    <option value="1">⭐ 1</option>
+                </select>
+
+                <label for="comment">Комментарий:</label>
+                <textarea name="comment" id="comment" required></textarea>
+
+                <button type="submit">Отправить</button>
+            </form>
+            {% else %}
+                <p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить отзыв.</p>
+            {% endif %}
         </div>
         
     </div>

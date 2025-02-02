@@ -8,6 +8,10 @@ from django.db.models import Q
 from django.contrib import messages
 from .forms import CheckoutForm
 
+from django.db.models import Avg
+from .models import Product, Review
+from .forms import ReviewForm
+
 # Получаем категории для отображения в боковой панели
 def get_categories():
     return Category.objects.all()
@@ -185,3 +189,27 @@ def checkout(request):
 
 def order_complete(request):
     return render(request, 'order_complete.html')
+
+def product_detail(request, slug):
+    # Fetch the product by slug
+    product = get_object_or_404(Product, slug=slug)
+    reviews = Review.objects.filter(product=product)
+    average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.product = product
+            review.save()
+            return redirect('product_detail', slug=product.slug)  # Redirect with slug
+    else:
+        form = ReviewForm()
+
+    return render(request, 'product_detail.html', {
+        'product': product,
+        'reviews': reviews,
+        'average_rating': average_rating,
+        'form': form,
+    })

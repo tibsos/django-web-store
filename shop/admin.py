@@ -21,8 +21,12 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user_name', 'rating', 'created_at')
+    list_display = ('id', 'get_username', 'product', 'rating', 'created_at')
 
+    def get_username(self, obj):
+        return obj.user.username
+    get_username.short_description = "Имя пользователя"
+    
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage)
