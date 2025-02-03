@@ -117,6 +117,72 @@
     .search-form button:hover {
         background-color: #218838;
     }
+
+    /* Стили для количества товара */
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .quantity-control button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    .quantity-control button:hover {
+        background-color: #0056b3;
+    }
+
+    .quantity-control input {
+        width: 40px;
+        text-align: center;
+        margin: 0 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Стили для рейтинга */
+    .product-rating {
+        margin-top: 10px;
+        font-size: 1.1em;
+        color: orange; /* Оранжевый цвет для рейтинга */
+    }
+
+    .product-rating i {
+        margin-right: 5px;
+    }
+
+    /* Стили для сообщений */
+    .cart-message {
+        margin-top: 10px;
+        font-size: 0.9em;
+    }
+
+    /* Стили для кнопки с сердечком */
+    .favourite-button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5em;
+        color: #ccc;
+        transition: color 0.3s ease;
+    }
+
+    .favourite-button.active {
+        color: red; /* Красный цвет для активного состояния */
+    }
+
+    .favourite-button:hover {
+        color: red; /* Красный цвет при наведении */
+    }
 </style>
 
 <div class="container">
@@ -149,10 +215,25 @@
                         <p>{{ product.price }} руб.</p>
                     </a>
 
+                    <!-- Рейтинг товара -->
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i> {{ product.average_rating|default:"0.0"|floatformat:1 }} / 5
+                    </div>
+
+                    <!-- Кнопка с сердечком для добавления в избранное -->
+                    <button class="favourite-button" data-product-id="{{ product.id }}" onclick="toggleFavourite(this)">
+                        <i class="fas fa-heart"></i>
+                    </button>
+
                     <!-- Форма для добавления товара в корзину -->
                     <form method="POST" action="{% url 'add_to_cart' product.id %}" class="add-to-cart-form" data-product-id="{{ product.id }}">
                         {% csrf_token %}
-                        <button type="submit">Добавить в корзину</button>
+                        <div class="quantity-control">
+                            <button type="button" class="decrease-quantity">-</button>
+                            <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
+                            <button type="button" class="increase-quantity">+</button>
+                        </div>
+                        <button type="submit"><i class="fas fa-cart-plus"></i> Добавить в корзину</button>
                     </form>
                     <div class="cart-message" id="cart-message-{{ product.id }}"></div> <!-- Сообщение -->
                 </div>
@@ -168,11 +249,33 @@
         const forms = document.querySelectorAll('.add-to-cart-form');
         
         forms.forEach(function (form) {
+            const quantityInput = form.querySelector('.quantity-input');
+            const decreaseButton = form.querySelector('.decrease-quantity');
+            const increaseButton = form.querySelector('.increase-quantity');
+
+            // Уменьшение количества
+            decreaseButton.addEventListener('click', function () {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+
+            // Увеличение количества
+            increaseButton.addEventListener('click', function () {
+                let value = parseInt(quantityInput.value);
+                if (value < 10) {
+                    quantityInput.value = value + 1;
+                }
+            });
+
+            // Отправка формы
             form.addEventListener('submit', function (e) {
                 e.preventDefault(); // Останавливаем стандартное поведение формы
                 
                 const productId = form.dataset.productId;
                 const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
+                const quantity = quantityInput.value;
                 const cartMessage = document.getElementById('cart-message-' + productId);
                 
                 fetch(`/cart/add/${productId}/`, {
@@ -181,7 +284,7 @@
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrfToken,
                     },
-                    body: JSON.stringify({ product_id: productId })
+                    body: JSON.stringify({ product_id: productId, quantity: quantity })
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -194,12 +297,37 @@
                     }
                 })
                 .catch(error => {
-                    cartMessage.innerHTML = '<p>Товар добавлен в корзину!</p>';
+                    cartMessage.innerHTML = '<p>Ошибка при добавлении товара.</p>';
                     cartMessage.style.color = 'red';
                 });
             });
         });
     });
+
+    // Функция для добавления/удаления из избранного
+    function toggleFavourite(button) {
+        const productId = button.dataset.productId;
+        const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+
+        fetch(`/favourites/toggle/${productId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                button.classList.toggle('active'); // Переключаем активное состояние
+            } else {
+                alert('Ошибка при добавлении в избранное.');
+            }
+        })
+        .catch(error => {
+            alert('Ошибка при добавлении в избранное.');
+        });
+    }
 </script>
 
 {% endblock %}

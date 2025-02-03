@@ -3,17 +3,24 @@
 {% block content %}
     <h1>Category Products</h1>
 
-    <!-- Форма выбора категории -->
+    <!-- Форма выбора категории и фильтров -->
     <div class="category-selection">
         <form method="get" action="{% if category %}{% url 'category_products' slug=category.slug %}{% else %}{% url 'category_products' slug='' %}{% endif %}">
             <label for="category">Select a category:</label>
-            <select name="category" id="category">
+            <select name="category" id="category" onchange="this.form.submit()">
                 <option value="">All Categories</option>
                 {% for cat in categories %}
-                    <option value="{{ cat.slug }}" {% if category and category.slug == cat.slug %}selected{% endif %}>{{ cat.name }}</option>
+                    <option value="{{ cat.slug }}" {% if request.GET.category == cat.slug %}selected{% endif %}>{{ cat.name }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Filter</button>
+
+            <label for="sort">Sort by:</label>
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="">Default</option>
+                <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
+                <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
+                <option value="rating" {% if request.GET.sort == 'rating' %}selected{% endif %}>Rating</option>
+            </select>
         </form>
     </div>
 
@@ -40,6 +47,7 @@
                             <h3>{{ product.name }}</h3>
                             <p>{{ product.description|truncatewords:15 }}</p>
                             <p><strong>{{ product.price }} USD</strong></p>
+                            <p>Rating: {{ product.rating }}</p>
                         </div>
                     </a>
                 </div>
@@ -53,6 +61,17 @@
 
 {% block extra_css %}
     <style>
+        /* Стили для формы выбора категории и фильтров */
+        .category-selection {
+            margin-bottom: 20px;
+        }
+
+        .category-selection select {
+            padding: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
         /* Стили для отображения продуктов в сетке */
         .products-list {
             display: grid;
@@ -69,6 +88,10 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
             border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .product-container:hover {
@@ -79,18 +102,21 @@
         .product-link {
             text-decoration: none;
             color: #333;
+            width: 100%;
         }
 
         /* Стили для изображения товара */
         .product-image img {
             width: 100%;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
             border-radius: 5px;
         }
 
         /* Стили для информации о товаре */
         .product-info {
             margin-top: 10px;
+            width: 100%;
         }
 
         .product-info h3 {
@@ -108,17 +134,6 @@
         .product-info strong {
             font-size: 16px;
             color: #000;
-        }
-
-        /* Стили для формы выбора категории */
-        .category-selection {
-            margin-bottom: 20px;
-        }
-
-        .category-selection select, .category-selection button {
-            padding: 8px;
-            font-size: 16px;
-            margin-top: 10px;
         }
     </style>
 {% endblock %}

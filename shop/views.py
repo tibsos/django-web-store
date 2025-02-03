@@ -193,9 +193,10 @@ def order_complete(request):
 def product_detail(request, slug):
     # Fetch the product by slug
     product = get_object_or_404(Product, slug=slug)
-    reviews = Review.objects.filter(product=product)
+    reviews = Review.objects.filter(product=product).order_by('-created_at')  # Сортировка отзывов по дате (новые сначала)
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
 
+    # Обработка формы отзыва
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -203,13 +204,17 @@ def product_detail(request, slug):
             review.user = request.user
             review.product = product
             review.save()
-            return redirect('product_detail', slug=product.slug)  # Redirect with slug
+            return redirect('product_detail', slug=product.slug)  # Редирект с использованием slug
     else:
         form = ReviewForm()
 
-    return render(request, 'product_detail.html', {
+    # Контекст для шаблона
+    context = {
         'product': product,
         'reviews': reviews,
-        'average_rating': average_rating,
+        'average_rating': round(average_rating, 1),  # Округление рейтинга до одного знака после запятой
         'form': form,
-    })
+        'total_reviews': reviews.count(),  # Добавлено общее количество отзывов
+    }
+
+    return render(request, 'product_detail.html', context)
