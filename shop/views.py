@@ -218,3 +218,10 @@ def product_detail(request, slug):
     }
 
     return render(request, 'product_detail.html', context)
+
+def toggle_favorite(request, product_id):
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        result = Favorite.toggle_favorite(request.user, product)
+        return JsonResponse({'success': result['success'], 'action': result['action']})
+    return JsonResponse({'success': False, 'message': 'Не авторизован'})

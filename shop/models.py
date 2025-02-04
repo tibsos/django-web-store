@@ -126,6 +126,14 @@ class Favorite(models.Model):
 
     def __str__(self):
         return f"Избранное: {self.product.name} для {self.user.username}"
+
+    @classmethod
+    def toggle_favorite(cls, user, product):
+        favorite, created = cls.objects.get_or_create(user=user, product=product)
+        if not created:
+            favorite.delete()
+            return {'success': True, 'action': 'removed'}
+        return {'success': True, 'action': 'added'}
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='shop_profile')
