@@ -69,40 +69,27 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
                     body: JSON.stringify({ product_id: productId, quantity: quantity })
-                }).then(response => response.json()).then(data => {
-                    if (data.success) {
-                        alert('Товар добавлен в корзину!');
-                    } else {
-                        alert('Ошибка при добавлении товара.');
-                    }
-                }).catch(error => {
-                    alert('Ошибка при добавлении товара.');
-                });
+                })
             });
         });
     });
 
     function toggleFavourite(button) {
+
         const productId = button.dataset.productId;
         const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
 
-        fetch(`/favourites/toggle/${productId}/`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken }
-        }).then(response => response.json()).then(data => {
-            if (data.success) {
-                button.classList.toggle('active');
-                if (data.action === 'added') {
-                    alert('Товар добавлен в избранное!');
-                } else {
-                    alert('Товар удален из избранного!');
-                }
-            } else {
-                alert('Ошибка при добавлении в избранное.');
-            }
-        }).catch(error => {
-            alert('Ошибка при добавлении в избранное.');
+        $.ajax({
+            type: 'POST',
+            url: `/favourites/toggle/${productId}/`,  // Correct dynamic URL
+            headers: { "X-CSRFToken": csrfToken },
+            success: function (response) {
+                if (response.success) {
+                    $(button).toggleClass('active');
+                } 
+            },
         });
+
     }
 </script>
 

@@ -3,36 +3,28 @@
 {% block content %}
 <div class="container">
     <h1>Избранное</h1>
+    
     {% if favorites %}
-    <div class="favorites-items">
-        <table>
-            <thead>
-                <tr>
-                    <th>Товар</th>
-                    <th>Цена</th>
-                    <th>Удалить</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for favorite in favorites %}
-                <tr>
-                    <td>
-                        <a href="{% url 'product_detail' slug=favorite.product.slug %}">
-                            <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" class="product-image">
-                            {{ favorite.product.name }}
-                        </a>
-                    </td>
-                    <td>{{ favorite.product.price }} руб.</td>
-                    <td>
-                        <form method="POST" action="{% url 'remove_from_favorites' favorite.id %}">
-                            {% csrf_token %}
-                            <button type="submit">Удалить</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="products">
+        {% for favorite in favorites %}
+            <div class="product-item">
+                <a href="{% url 'product_detail' slug=favorite.product.slug %}">
+                    <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" class="product-image">
+                    <h3>{{ favorite.product.name }}</h3>
+                    <p>{{ favorite.product.price }} руб.</p>
+                </a>
+                <button class="remove-from-favorites" data-product-id="{{ favorite.product.id }}">Удалить из избранного</button>
+                <form method="POST" class="add-to-cart-form" data-product-id="{{ favorite.product.id }}">
+                    {% csrf_token %}
+                    <div class="quantity-control">
+                        <button type="button" class="decrease-quantity">-</button>
+                        <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
+                        <button type="button" class="increase-quantity">+</button>
+                    </div>
+                    <button type="submit">Добавить в корзину</button>
+                </form>
+            </div>
+        {% endfor %}
     </div>
     {% else %}
     <p>Ваш список избранных товаров пуст.</p>
@@ -40,58 +32,63 @@
     {% endif %}
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".remove-from-favorites").forEach(button => {
+            button.addEventListener("click", function() {
+                let productId = this.dataset.productId;
+                fetch(`/favourites/toggle/${productId}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": getCSRFToken(),
+                        "Content-Type": "application/json"
+                    }
+                }).then(response => response.json()).then(data => {
+                    if (data.success) {
+                        alert("Товар удален из избранного!");
+                        location.reload();
+                    }
+                });
+            });
+        });
+        
+        document.querySelectorAll(".add-to-cart-form").forEach(form => {
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+                let productId = this.dataset.productId;
+                let csrfToken = this.querySelector("[name='csrfmiddlewaretoken']").value;
+                let quantity = this.querySelector(".quantity-input").value;
+                
+                fetch(`/cart/add/${productId}/`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "X-CSRFToken": csrfToken },
+                    body: JSON.stringify({ product_id: productId, quantity: quantity })
+                }).then(response => response.json()).then(data => {
+                    if (data.success) {
+                        alert("Товар добавлен в корзину!");
+                    } else {
+                        alert("Ошибка при добавлении товара.");
+                    }
+                }).catch(error => {
+                    alert("Ошибка при добавлении товара.");
+                });
+            });
+        });
+    });
+    
+    function getCSRFToken() {
+        return document.querySelector("input[name=csrfmiddlewaretoken]")?.value || "";
+    }
+</script>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-
-    .container {
-        padding: 20px;
-    }
-
-    /* Стили для таблиц */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th, td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
-
-    .product-image {
-        max-width: 50px;
-        margin-right: 10px;
-    }
-
-    /* Стили для кнопок */
-    button {
-        display: inline-block;
-        padding: 5px 10px;
-        background-color: #dc3545;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    button:hover {
-        background-color: #c82333;
-    }
-
-    /* Стили для информации профиля */
-    .favorites-items {
-        margin-top: 20px;
-    }
-
-    .favorites-items table th, .favorites-items table td {
-        text-align: left;
-    }
+    .container { margin: 0 auto; padding: 20px; max-width: 1200px; }
+    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .product-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #fff; }
+    .product-image { max-width: 100%; height: auto; border-radius: 5px; }
+    .quantity-control { display: flex; align-items: center; justify-content: center; margin-top: 10px; }
+    .quantity-control button { background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+    .remove-from-favorites { background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+    .remove-from-favorites:hover { background-color: #c82333; }
 </style>
 {% endblock %}

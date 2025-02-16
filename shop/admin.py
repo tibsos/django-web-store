@@ -12,7 +12,7 @@ class PriceHistoryInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline, PriceHistoryInline]
-    list_display = ('name', 'category', 'price', 'stock', 'sku')
+    list_display = ('id','name', 'category', 'price', 'stock', 'sku')
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'sku')
 

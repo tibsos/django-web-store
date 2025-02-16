@@ -3,6 +3,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 from .views import toggle_favorite
 
+
 urlpatterns = [
     # Главная страница с товарами и категориями
     path('', views.product_list, name='product_list'),
@@ -45,5 +46,5 @@ urlpatterns = [
 
     path('product/<slug:slug>/', views.product_detail, name='product_detail'),
 
-    path('favourites/toggle/<int:product_id>/', toggle_favorite, name='toggle_favorite'),
+    path('favourites/toggle/<uuid:product_id>/', toggle_favorite, name='toggle_favorite'),
 ]
