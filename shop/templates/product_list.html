@@ -25,8 +25,8 @@
                     <p>{{ product.price }} руб.</p>
                 </a>
                 <div class="product-rating">
-                    ⭐ {{ product.average_rating|default:"0.0"|floatformat:1 }} / 5
-                </div>
+                    ⭐ {{ product.average_rating|floatformat:1 }} / 5
+                </div>                             
                 <button class="favourite-button {% if product in user.favorites.all %}active{% endif %}" data-product-id="{{ product.id }}" onclick="toggleFavourite(this)">
                     ❤️
                 </button>

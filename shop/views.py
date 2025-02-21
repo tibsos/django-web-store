@@ -191,30 +191,30 @@ def order_complete(request):
     return render(request, 'order_complete.html')
 
 def product_detail(request, slug):
-    # Fetch the product by slug
+    # Получаем продукт по slug
     product = get_object_or_404(Product, slug=slug)
-    reviews = Review.objects.filter(product=product).order_by('-created_at')  # Сортировка отзывов по дате (новые сначала)
-    average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+
+    # Получаем все отзывы и считаем средний рейтинг
+    reviews = product.reviews.all().order_by('-created_at')  # Используем related_name
+    average_rating = product.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating'] or 0.0
+    average_rating = round(average_rating, 1)  # Округление до 1 знака
 
     # Обработка формы отзыва
-    if request.method == "POST":
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.user = request.user
-            review.product = product
-            review.save()
-            return redirect('product_detail', slug=product.slug)  # Редирект с использованием slug
-    else:
-        form = ReviewForm()
+    form = ReviewForm(request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        review = form.save(commit=False)
+        review.user = request.user
+        review.product = product
+        review.save()
+        return redirect('product_detail', slug=product.slug)
 
     # Контекст для шаблона
     context = {
         'product': product,
         'reviews': reviews,
-        'average_rating': round(average_rating, 1),  # Округление рейтинга до одного знака после запятой
+        'average_rating': average_rating,
         'form': form,
-        'total_reviews': reviews.count(),  # Добавлено общее количество отзывов
+        'total_reviews': reviews.count(),
     }
 
     return render(request, 'product_detail.html', context)
