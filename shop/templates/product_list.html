@@ -1,43 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<style>
-    .container { margin: 0 auto; padding: 20px; max-width: 1200px; }
-    h1 { font-size: 2.5em; margin-bottom: 20px; }
-    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .product-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #fff; }
-    .product-image { max-width: 100%; height: auto; border-radius: 5px; }
-    .product-rating { color: orange; margin-top: 10px; }
-    .favourite-button { background: none; border: none; font-size: 1.5em; color: #ccc; cursor: pointer; }
-    .favourite-button.active { color: red; }
-    .quantity-control { display: flex; align-items: center; justify-content: center; margin-top: 10px; }
-    .quantity-control button { background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer; }
-</style>
 
 <div class="container">
     <h1>Товары</h1>
     <div class="products">
         {% for product in products %}
             <div class="product-item">
-                <a href="{% url 'product_detail' slug=product.slug %}">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-                    <h3>{{ product.name }}</h3>
-                    <p>{{ product.price }} руб.</p>
-                </a>
-                <div class="product-rating">
-                    ⭐ {{ product.average_rating|floatformat:1 }} / 5
-                </div>                             
-                <button class="favourite-button {% if product in user.favorites.all %}active{% endif %}" data-product-id="{{ product.id }}" onclick="toggleFavourite(this)">
+                <!-- Кнопка "Избранное" -->
+                <button class="favourite-button {% if product in user.favorites.all %}active{% endif %}" 
+                        data-product-id="{{ product.id }}">
                     ❤️
                 </button>
-                <form method="POST" class="add-to-cart-form" data-product-id="{{ product.id }}">
-                    {% csrf_token %}
-                    <div class="quantity-control">
-                        <button type="button" class="decrease-quantity">-</button>
-                        <input type="number" name="quantity" value="1" min="1" max="10" class="quantity-input">
-                        <button type="button" class="increase-quantity">+</button>
+
+                <!-- Изображение товара с ссылкой на страницу товара -->
+                <a href="{% url 'product_detail' product.slug %}">
+                    <div class="product-image-container">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
                     </div>
-                    <button type="submit">Добавить в корзину</button>
+                </a>
+
+                <!-- Цена товара -->
+                <div class="product-price">{{ product.price }}₽</div>
+
+                <!-- Кнопка добавления в корзину -->
+                <form method="POST" action="{% url 'add_to_cart' product.id %}" class="add-to-cart-form">
+                    {% csrf_token %}
+                    <button type="submit" class="add-to-cart-btn">+</button>
                 </form>
             </div>
         {% endfor %}
