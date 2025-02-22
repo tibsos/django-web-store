@@ -18,22 +18,28 @@
         }
 
         header {
-            background-color: #d4c44c; /* Цвет панели */
+            background-color: #a5a5a2; /* Цвет панели */
             color: #fff;
-            padding: 15px 0;
+            padding: 20px 0;
             text-align: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid #8b572a; /* Граница панели */
+            border-bottom: 3px solid #525252; /* Граница панели */
+            border-radius: 35px;
+            width: 95%;
+            left: 3%;
         }
 
         .logo {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            right: 40%;
         }
 
+        /* Контейнер меню */
         .menu {
             position: absolute;
             display: inline-block;
@@ -41,6 +47,33 @@
             left: 10px;
         }
 
+        /* Бургер-кнопка */
+        .burger-menu {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Линии внутри бургера */
+        .burger-menu span {
+            display: block;
+            width: 25px;
+            height: 4px;
+            background-color: black;
+            border-radius: 2px;
+        }
+
+        /* Выпадающее меню */
         .menu-items {
             display: none;
             position: absolute;
@@ -48,31 +81,41 @@
             width: 200px;
             top: 100%;
             left: 0;
-            border-radius: 5px;
+            border-radius: 30px;
         }
 
+        /* Активное состояние меню */
         .menu-items.active {
             display: block;
         }
 
+        /* Стилизация списка */
         .menu-items ul {
             padding: 0;
             margin: 0;
             list-style-type: none;
         }
 
+        /* Элементы списка */
         .menu-items li {
             padding: 10px;
             position: relative; /* Позволяет управлять z-index */
             white-space: nowrap; /* Запрещает перенос текста */
             overflow: visible; /* Позволяет li выходить за пределы панели */
             z-index: 9999; /* Устанавливает высокий приоритет на слои */
+            border-radius: 30px;
         }
 
+        /* Ссылки в меню */
         .menu-items li a {
             color: #fff;
             text-decoration: none;
         }
+
+        .menu-items li:hover {
+            background-color: #444;
+        }
+
 
         .search-cart {
             position: absolute;
@@ -82,12 +125,29 @@
 
         .search-cart form {
             display: inline-block;
-            margin-right: 10px;
+            margin-right: 350px;
         }
 
         .search-cart input {
-            padding: 5px;
+            padding: 10px;
+            border-radius: 25px; /* Делает форму более круглой */
+            border: 1px solid #ccc; /* Тонкая серая рамка */
+            width: 200px; /* Можно менять ширину */
         }
+
+        .search-cart input:focus {
+            outline: none; /* Убирает стандартное выделение при фокусе */
+            border-color: #424242; /* Изменяет цвет рамки при фокусе */
+        }
+
+        .search-cart input::placeholder {
+            color: #888; /* Цвет плейсхолдера */
+        }
+
+        .search-cart input:hover {
+            border-color: #292a2a; /* Изменение цвета рамки при наведении */
+        }
+
 
         .cart, .favorites, .profile {
             display: inline-block;
@@ -206,8 +266,8 @@
         }
 
         .product-image-container {
-            width: 230px;
-            height: 200px;
+            width: 145px;
+            height: 195px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -264,9 +324,33 @@
             position: absolute;
             bottom: 10px;
             right: 0%;
-            top: 320px;
+            top: 315px;
         }
 
+        .search-btn {
+            background-color: #007bff; /* Цвет фона кнопки */
+            border: none; /* Убираем стандартную рамку */
+            border-radius: 50%; /* Сделать кнопку круглой */
+            padding: 15px; /* Отступы для создания круглой формы */
+            color: white; /* Цвет иконки */
+            font-size: 20px; /* Размер иконки */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+            top: -33px;
+            left: 84%;
+        }
+
+        .search-btn:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
+
+        .search-btn i {
+            margin: 0; /* Убираем отступы */
+        }
 
         /* Адаптивное масштабирование */
         @media (max-width: 768px) {
@@ -304,7 +388,14 @@
             </svg>
         </div>
         <div class="menu">
-            <button class="burger-menu" onclick="toggleMenu()">...</button>
+            <!-- Кнопка бургер-меню -->
+            <button class="burger-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        
+            <!-- Выпадающее меню -->
             <div class="menu-items" id="menu-items">
                 <ul>
                     <li><a href="{% url 'product_list' %}">Главная</a></li>
@@ -313,11 +404,13 @@
                     {% endfor %}
                 </ul>
             </div>
-        </div>
+        </div>              
         <div class="search-cart">
             <form method="GET" action="{% url 'product_list' %}">
                 <input type="text" name="q" placeholder="Поиск товаров" value="{{ request.GET.q }}">
-                <button type="submit"><i class="fas fa-search"></i>Поиск</button>
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
             </form>
             <div class="cart">
                 <a href="{% url 'cart' %}">
